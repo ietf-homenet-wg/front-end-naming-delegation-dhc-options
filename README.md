@@ -2,9 +2,9 @@
 
 This is the working area for the IETF [HOMENET Working Group](https://datatracker.ietf.org/wg/homenet/documents/) Internet-Draft, "DHCPv6 Options for Homenet Authoritative Service".
 
-* [Editor's Copy](https://ietf-homenet-wg.github.io/front-end-naming-delegation-dhc-options/#go.draft-ietf-homenet-naming-architecture-dhc-options.html)
+* [Editor's Copy](https://ietf-homenet-wg.github.io/front-end-naming-delegation-dhc-options/draft-ietf-homenet-naming-architecture-dhc-options.html)
 * [Working Group Draft](https://tools.ietf.org/html/draft-ietf-homenet-naming-architecture-dhc-options)
-* [Compare Editor's Copy to Working Group Draft](https://ietf-homenet-wg.github.io/front-end-naming-delegation-dhc-options/#go.draft-ietf-homenet-naming-architecture-dhc-options.diff)
+* [Compare Editor's Copy to Working Group Draft](https://tools.ietf.org//rfcdiff?url1=https://www.ietf.org/id/draft-ietf-homenet-naming-architecture-dhc-options-06.txt&url2=https://ietf-homenet-wg.github.io/front-end-naming-delegation-dhc-options/draft-ietf-homenet-naming-architecture-dhc-options.txt)
 
 ## Building the Draft
 
