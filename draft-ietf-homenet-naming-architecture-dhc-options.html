@@ -1,0 +1,1113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>DHCPv6 Options for Homenet Authoritative Service</title>
+
+  
+<style type="text/css">/*<![CDATA[*/
+
+body {
+  font: 16px "Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
+  color: #333;
+  font-size-adjust: 0.5;
+  line-height: 24px;
+  margin: 75px auto;
+  max-width: 624px;
+  padding: 0 5px;
+}
+
+.title, .filename, h1, h2, h3, h4, h5 {
+  font: 16px "Roboto Condensed","Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
+  font-size-adjust: 0.5;
+  font-weight: bold;
+  color: #333;
+  line-height: 100%;
+  margin: 1.2em 0 0.3em;
+}
+.title, #rfc\.title h1 { font-size: 32px; }
+h1, section h1, h2, section h2, section h3, nav h2 { font-size: 20px; }
+h3, section h4, h4, section h5 { font-size: 16px; }
+h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
+  color: #333;
+}
+
+table {
+  margin-left: 0em;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+tr:nth-child(2n+1) > td,
+tr:nth-child(2n+1) > th {
+  background-color: #f9f9f9;
+}
+td.reference {
+  max-width: 200px;
+  border-top: none;
+  padding-right: 1em;
+}
+.right {
+  text-align: right;
+}
+
+
+table.header, table#rfc\.headerblock {
+  width: 100%;
+}
+table.header td, table#rfc\.headerblock td {
+  border: none;
+  background-color: transparent;
+  color: black;
+  padding: 0;
+}
+.filename {
+  display: block;
+  color: rgb(119, 119, 119);
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 100%;
+  margin: 10px 0 32px;
+}
+#rfc\.abstract+p, #rfc\.abstract p {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+samp, tt, code, pre {
+  font: 15px Consolas, monospace;
+  font-size-adjust: none;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  padding: 5px;
+  margin: 5px;
+}
+.figure, caption {
+  font-style: italic;
+  margin: 0 1.5em;
+  text-align: left;
+}
+
+address {
+  margin: 16px 2px;
+  line-height: 20px;
+}
+.vcard {
+  font-style: normal;
+}
+.vcardline {
+  display: block;
+}
+.vcardline .fn, address b {
+  font-weight: normal;
+}
+.vcardline .hidden {
+  display: none;
+}
+
+dl {
+  margin-left: 1em;
+}
+dl.dl-horizontal: {
+  margin-left: 0;
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.nohang > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .5em;
+}
+dl.compact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+ul.empty {
+  list-style-type: none;
+}
+ul.empty li {
+  margin-top: .5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+hr.noprint {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #2a6496;
+}
+a[href]:hover {
+  background-color: #eee;
+}
+
+p, ol, ul, li {
+  padding: 0;
+}
+p {
+  margin: 0.5em 0;
+}
+ol, ul {
+  margin: 0.2em 0 0.2em 2em;
+}
+li {
+  margin: 0.2em 0;
+}
+address {
+  font-style: normal;
+}
+
+ul.toc ul {
+  margin: 0 0 0 2em;
+}
+ul.toc li {
+  list-style: none;
+  margin: 0;
+}
+
+@media screen and (min-width: 924px) {
+  body {
+    padding-right: 350px;
+  }
+  body>ul.toc, body>#rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 500px);
+    width: 300px;
+    z-index: 1;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  body>#rfc\.toc {
+    top: 55px;
+  }
+  body>ul.toc {
+    top: 100px;
+  }
+
+  ul.toc {
+    margin: 0 0 0 4px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  ul.toc ul {
+    margin-left: 1.2em;
+  }
+}
+
+.github-fork-ribbon-wrapper {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  /* "Fork me on GitHub" CSS ribbon based on
+   * https://github.com/simonwhitaker/github-fork-ribbon-css
+   */
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    pointer-events: auto;
+
+    top: 38px;
+    right: -45px;
+
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon a[href],
+  .github-fork-ribbon a[href]:hover {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    width: 190px;
+    line-height: 18px;
+
+    display: inline-block;
+    padding: 2px 0;
+
+    border: 1.5px dotted #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .github-fork-ribbon-wrapper {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    overflow: hidden;
+    top: 0; right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .github-fork-ribbon-wrapper {
+    position: fixed;
+  }
+  /*]]>*/</style>
+  <meta name="viewport" content="initial-scale=1.0">
+
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Requirements notation">
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
+<link href="#rfc.section.3" rel="Chapter" title="3 Introduction">
+<link href="#rfc.section.4" rel="Chapter" title="4 Protocol Overview">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Architecture and DHCPv6 Options Overview">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Mechanisms Securing DNS Transactions">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Primary / Secondary Synchronization versus DNS Update">
+<link href="#rfc.section.5" rel="Chapter" title="5 HNA Configuration">
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 HNA Primary / Secondary Synchronization Configurations">
+<link href="#rfc.section.5.2" rel="Chapter" title="5.2 HNA / Synchronization Server">
+<link href="#rfc.section.5.2.1" rel="Chapter" title="5.2.1 HNA / Reverse Synchronization Server">
+<link href="#rfc.section.5.3" rel="Chapter" title="5.3 HNA DNS Data Handling">
+<link href="#rfc.section.5.3.1" rel="Chapter" title="5.3.1 Homenet Zone Template">
+<link href="#rfc.section.5.3.2" rel="Chapter" title="5.3.2 DNS (Reverse) Homenet Zone">
+<link href="#rfc.section.6" rel="Chapter" title="6 Payload Description">
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 Supported Authentication Methods Field">
+<link href="#rfc.section.6.1.1" rel="Chapter" title="6.1.1 Update Field">
+<link href="#rfc.section.6.2" rel="Chapter" title="6.2 Client Public Key Option">
+<link href="#rfc.section.6.3" rel="Chapter" title="6.3 Zone Template Option">
+<link href="#rfc.section.6.4" rel="Chapter" title="6.4 Synchronization Server Option">
+<link href="#rfc.section.6.5" rel="Chapter" title="6.5 Reverse Synchronization Server Option">
+<link href="#rfc.section.7" rel="Chapter" title="7 DHCP Behavior">
+<link href="#rfc.section.7.1" rel="Chapter" title="7.1 DHCPv6 Server Behavior">
+<link href="#rfc.section.7.2" rel="Chapter" title="7.2 DHCPv6 Client Behavior">
+<link href="#rfc.section.7.3" rel="Chapter" title="7.3 DHCPv6 Relay Agent Behavior">
+<link href="#rfc.section.8" rel="Chapter" title="8 IANA Considerations">
+<link href="#rfc.section.9" rel="Chapter" title='9 Security Considerations"'>
+<link href="#rfc.section.9.1" rel="Chapter" title="9.1 DNSSEC is recommended to authenticate DNS hosted data">
+<link href="#rfc.section.9.2" rel="Chapter" title="9.2 Channel between the HNA and ISP DHCP Server MUST be secured">
+<link href="#rfc.section.9.3" rel="Chapter" title="9.3 HNAs are sensitive to DoS">
+<link href="#rfc.section.10" rel="Chapter" title="10 Acknowledgments">
+<link href="#rfc.section.11" rel="Chapter" title="11 Scenarios and impact on the End User">
+<link href="#rfc.section.12" rel="Chapter" title="12 Base Scenario">
+<link href="#rfc.section.12.1" rel="Chapter" title="12.1 Third Party Registered Homenet Domain">
+<link href="#rfc.section.12.2" rel="Chapter" title="12.2 Third Party DNS Infrastructure">
+<link href="#rfc.section.12.3" rel="Chapter" title="12.3 Multiple ISPs">
+<link href="#rfc.references" rel="Chapter" title="13 References">
+<link href="#rfc.references.1" rel="Chapter" title="13.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="13.2 Informative References">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.10.0 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Migault, D., Weber, R., Mrugalski, T., Griffiths, C., and W. Cloetens" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-homenet-naming-architecture-dhc-options-07" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-08-08" />
+  <meta name="dct.abstract" content="The Homenet Naming Authority (HNA) is the designated device in charge of outsourcing the service to a third party, which requires setting up an architecture." />
+  <meta name="description" content="The Homenet Naming Authority (HNA) is the designated device in charge of outsourcing the service to a third party, which requires setting up an architecture." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">Homenet</td>
+<td class="right">D. Migault</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">Ericsson</td>
+</tr>
+<tr>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">R. Weber</td>
+</tr>
+<tr>
+<td class="left">Expires: February 9, 2019</td>
+<td class="right">Nominum</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">T. Mrugalski</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Internet Systems Consortium, Inc.</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">C. Griffiths</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right"></td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">W. Cloetens</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">SoftAtHome&lt;</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">August 08, 2018</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">DHCPv6 Options for Homenet Authoritative Service<br />
+  <span class="filename">draft-ietf-homenet-naming-architecture-dhc-options-07</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>The Homenet Naming Authority (HNA) is the designated device in charge of outsourcing the service to a third party, which requires setting up an architecture.</p>
+<p>Such settings may be inappropriate for most end users. This document defines DHCPv6 options so any agnostic HNA can automatically proceed to the appropriate configuration and outsource the authoritative naming service for the home network. In most cases, the outsourcing mechanism is transparent for the end user.</p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on February 9, 2019.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Requirements notation</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Terminology</a>
+</li>
+<li>3.   <a href="#rfc.section.3">Introduction</a>
+</li>
+<li>4.   <a href="#rfc.section.4">Protocol Overview</a>
+</li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Architecture and DHCPv6 Options Overview</a>
+</li>
+<li>4.2.   <a href="#rfc.section.4.2">Mechanisms Securing DNS Transactions</a>
+</li>
+<li>4.3.   <a href="#rfc.section.4.3">Primary / Secondary Synchronization versus DNS Update</a>
+</li>
+</ul><li>5.   <a href="#rfc.section.5">HNA Configuration</a>
+</li>
+<ul><li>5.1.   <a href="#rfc.section.5.1">HNA Primary / Secondary Synchronization Configurations</a>
+</li>
+<li>5.2.   <a href="#rfc.section.5.2">HNA / Synchronization Server</a>
+</li>
+<ul><li>5.2.1.   <a href="#rfc.section.5.2.1">HNA / Reverse Synchronization Server</a>
+</li>
+</ul><li>5.3.   <a href="#rfc.section.5.3">HNA DNS Data Handling</a>
+</li>
+<ul><li>5.3.1.   <a href="#rfc.section.5.3.1">Homenet Zone Template</a>
+</li>
+<li>5.3.2.   <a href="#rfc.section.5.3.2">DNS (Reverse) Homenet Zone</a>
+</li>
+</ul></ul><li>6.   <a href="#rfc.section.6">Payload Description</a>
+</li>
+<ul><li>6.1.   <a href="#rfc.section.6.1">Supported Authentication Methods Field</a>
+</li>
+<ul><li>6.1.1.   <a href="#rfc.section.6.1.1">Update Field</a>
+</li>
+</ul><li>6.2.   <a href="#rfc.section.6.2">Client Public Key Option</a>
+</li>
+<li>6.3.   <a href="#rfc.section.6.3">Zone Template Option</a>
+</li>
+<li>6.4.   <a href="#rfc.section.6.4">Synchronization Server Option</a>
+</li>
+<li>6.5.   <a href="#rfc.section.6.5">Reverse Synchronization Server Option</a>
+</li>
+</ul><li>7.   <a href="#rfc.section.7">DHCP Behavior</a>
+</li>
+<ul><li>7.1.   <a href="#rfc.section.7.1">DHCPv6 Server Behavior</a>
+</li>
+<li>7.2.   <a href="#rfc.section.7.2">DHCPv6 Client Behavior</a>
+</li>
+<li>7.3.   <a href="#rfc.section.7.3">DHCPv6 Relay Agent Behavior</a>
+</li>
+</ul><li>8.   <a href="#rfc.section.8">IANA Considerations</a>
+</li>
+<li>9.   <a href="#rfc.section.9">Security Considerations"</a>
+</li>
+<ul><li>9.1.   <a href="#rfc.section.9.1">DNSSEC is recommended to authenticate DNS hosted data</a>
+</li>
+<li>9.2.   <a href="#rfc.section.9.2">Channel between the HNA and ISP DHCP Server MUST be secured</a>
+</li>
+<li>9.3.   <a href="#rfc.section.9.3">HNAs are sensitive to DoS</a>
+</li>
+</ul><li>10.   <a href="#rfc.section.10">Acknowledgments</a>
+</li>
+<li>11.   <a href="#rfc.section.11">Scenarios and impact on the End User</a>
+</li>
+<li>12.   <a href="#rfc.section.12">Base Scenario</a>
+</li>
+<ul><li>12.1.   <a href="#rfc.section.12.1">Third Party Registered Homenet Domain</a>
+</li>
+<li>12.2.   <a href="#rfc.section.12.2">Third Party DNS Infrastructure</a>
+</li>
+<li>12.3.   <a href="#rfc.section.12.3">Multiple ISPs</a>
+</li>
+</ul><li>13.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>13.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>13.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#requirements-notation" id="requirements-notation">Requirements notation</a>
+</h1>
+<p id="rfc.section.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
+</h1>
+<p id="rfc.section.2.p.1">The reader is expected to be familiar with <a href="#I-D.ietf-homenet-front-end-naming-delegation" class="xref">[I-D.ietf-homenet-front-end-naming-delegation]</a> and its terminology section. This section defines terms that have not been defined in <a href="#I-D.ietf-homenet-front-end-naming-delegation" class="xref">[I-D.ietf-homenet-front-end-naming-delegation]</a>:</p>
+<p></p>
+
+<ul>
+<li>Client Public Key: designates a public key generated by the HNA. This key is used as an authentication credential for the HNA.</li>
+<li>Homenet Zone Template: The template used as a basis to generate the Homenet Zone.</li>
+<li>DNS Template Server: The DNS server that hosts the Homenet Zone Template.</li>
+<li>Homenet Reverse Zone: The reverse zone file associated to the Homenet Zone.</li>
+</ul>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#introduction" id="introduction">Introduction</a>
+</h1>
+<p id="rfc.section.3.p.1">HNAs are usually constrained devices with reduced network and CPU capacities. As such, a HNA hosting on the Internet the authoritative naming service for its home network may become vulnerable to resource exhaustion attacks. Outsourcing the authoritative service to a third party avoids exposing the HNA to such attacks. This third party can be the ISP or any other independent third party.</p>
+<p id="rfc.section.3.p.2">Outsourcing the authoritative naming service to a third party requires setting up an architecture designated in this document as the Outsourcing Infrastructure. These settings  may be inappropriate for most end users that do not have the sufficient knowledge. To address this issue, this document proposes DHCPv6 options so any agnostic HNA can automatically set the Outsourcing Infrastructure. In most cases, these DHCPv6 options are sufficient and do not require any additional interaction from the end user, thus achieving a zero-config settings. In some other cases, the end user is expected to perform some limited manual configuration.</p>
+<p id="rfc.section.3.p.3">When the HNA is plugged, the DHCPv6 options described in the document enable:</p>
+<p></p>
+
+<ul>
+<li>1). To build the Homenet Zone: Building the Homenet Zone requires filling the zone with appropriated bindings such as bindings between the names and the IP addresses of the different devices of the home networks. How the HNA is aware of these binding is out of scope of the document.  They may  be provided, for example, by the DHCPv6 server hosted on the HNA. On the other hand, building the Homenet Zone also requires configuration parameters like the name of the Registered Domain Name associated to the home network or the Public Authoritative Server(s) the Homenet Zone is outsourced to. These configuration parameters are stored in the Homenet Zone Template. This document describes the Zone Template Option which carries the FQDN associated to the Homenet Zone Template. In order to retrieve the Homenet Zone Template, the HNA sends a query of type AXFR <a href="#RFC1034" class="xref">[RFC1034]</a>, <a href="#RFC5936" class="xref">[RFC5936]</a>.</li>
+<li>2). To upload the Homenet Zone to the Synchronization Server,  in charge of publishing the Homenet Zone on the Public Authoritative Server(s).  This document describes the Synchronization Server Option that provides the FQDN of the appropriated server. Note that, the document does not consider whether the Homenet Zone is signed or not, and if signed, which entity is responsible to sign it. Such questions are out of the scope of the current document.</li>
+<li>3). To upload the Homenet Reverse Zone to the Reverse Synchronization Server in charge of publishing the Homenet Reverse Zone on the Reverse Public Authoritative Server(s). This document describes the Reverse Synchronization Server Option that provides the FQDN of the appropriated server. Similarly to item 2., we do not consider in this document if the Homenet Reverse Zone is signed or not, and if signed who signs it.</li>
+<li>4). To provide authentication credential (a public key) to the DHCP Server: Information stored in the Homenet Zone Template, the Homenet Zone and Homenet Reverse Zone belongs to the HNA, and only the HNA should be able to update or upload these zones. To authenticate the HNA, this document defines the Client Public Key Option. This option is sent by the HNA to the DHCPv6 server and provides the Client Public Key the HNA uses to authenticate itself. This document does not describe mechanisms used to transmit the Client Public Key from the DHCPv6 server to the appropriate entities. If the DHCPv6 server is not able to provide the Client Public Key to the appropriated entities, then the end user is likely to provide manually the Client Public Key to these entities. This document illustrates two scenarios: one where the DHCPv6 server is responsible for distributing the Client Public Key to the Synchronization Servers and Reverse Synchronization Server. In the other scenarios, the Client Public Key is distributed out of band.</li>
+</ul>
+<p id="rfc.section.3.p.5">The DHCPv6 options described in this document make possible to configure an Outsourcing Infrastructure with no or little configurations from the end user. A zero-config setting is achieved if the the link between the HNA and the DHCPv6 server and  the link between the DHCPv6 server and the various DNS servers (Homenet Zone Server, the Reverse Synchronization Server, Synchronization Server) are trusted. For example, one way to provide a thrustworhy connection between the HNA and the DHCPv6 server is defined in <a href="#I-D.ietf-dhc-sedhcpv6" class="xref">[I-D.ietf-dhc-sedhcpv6]</a>. When both links are trusted, the HNA is able to provide its authentication credentials (a Client Public Key) to the DHCPv6 server, that in turn forwards it to the various DNS servers. With the authentication credentials on the DNS servers, the HNA is able to securely update.</p>
+<p id="rfc.section.3.p.6">If the DHCPv6 server cannot provide the Client Public Key to one of these servers (most likely the Synchronization Server) and the HNA needs to interact with the server, then, the end user is expected to provide the HNA's Client Public Key to these servers (the Reverse Synchronization Server or the Synchronization Server) either manually or using other mechanisms. Such mechanisms are outside the scope of this document. In that case, the authentication credentials need to be provided every time the key is modified. <a href="#sec-scenario" class="xref">Section 11</a> provides more details on how different scenarios impact the end users.</p>
+<p id="rfc.section.3.p.7">The remaining of this document is structured as follows.  <a href="#sec-overview" class="xref">Section 4</a> provides an overview of the DHCPv6 options as well as the expected interactions between the HNA and the various involved entities. This section also provides an overview of available mechanisms to secure DNS transactions and update DNS data.  <a href="#sec-cpe-configuration" class="xref">Section 5</a> describes how the HNA may securely synchronize and update DNS data. <a href="#sec-format" class="xref">Section 6</a> describes the payload of the DHCPv6 options and <a href="#sec-dhcp-behavior" class="xref">Section 7</a> details how DHCPv6 client, server and relay agent behave. <a href="#sec-iana" class="xref">Section 8</a> lists the new parameters to be registered at the IANA, <a href="#security-considerations" class="xref">Section 9</a> provides security considerations. Finally, <a href="#sec-scenario" class="xref">Section 11</a> describes how the HNA may behave and be configured regarding various scenarios.</p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#sec-overview" id="sec-overview">Protocol Overview</a>
+</h1>
+<p id="rfc.section.4.p.1">This section provides an overview of the HNA's interactions with the Outsourcing Infrastructure in <a href="#sec-arch" class="xref">Section 4.1</a>, and so the necessary for its setting. In this document, the configuration is provided via DHCPv6 options. Once configured, the HNA is expected to be able to update and publish DNS data on the different components of the Outsourcing Infrastructure. As a result authenticating and updating mechanisms play an important role in the specification. <a href="#sec-sec-exchange" class="xref">Section 4.2</a> provides an overview of the different authentication methods and <a href="#sec-update" class="xref">Section 4.3</a> provides an overview of the different update mechanisms considered to update the DNS data.</p>
+<h2 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#sec-arch" id="sec-arch">Architecture and DHCPv6 Options Overview</a>
+</h2>
+<p id="rfc.section.4.1.p.1">This section illustrates how a HNA receives the necessary information via DHCPv6 options to outsource its authoritative naming service on the Outsourcing Infrastructure. For the sake of simplicity, this section assumes that the DHCPv6 server is able to communicate to the various DNS servers and to provide them the public key associated with the HNA. Once each server got the public key, the HNA can proceed to transactions in an authenticated and secure way.</p>
+<p id="rfc.section.4.1.p.2">This scenario has been chosen as it is believed to be the most popular scenario. This document does not ignore that scenarios where the DHCP Server does not have privileged relations with the Synchronization Server must be considered. These cases are discussed latter in <a href="#sec-scenario" class="xref">Section 11</a>. Such scenario does not necessarily require configuration for the end user and can also be zero-config.</p>
+<p id="rfc.section.4.1.p.3">The scenario is represented in <a href="#fig-protocol-overview" class="xref">Figure 1</a>.</p>
+<p></p>
+
+<ul>
+<li>1) The HNA provides its Client Public Key to the DHCP Server using a Client Public Key Option (OPTION_PUBLIC_KEY) and includes the following option codes in its its Option Request Option (ORO): Zone Template Option (OPTION_DNS_ZONE_TEMPLATE), the Synchronization Server Option (OPTION_SYNC_SERVER) and the Reverse Synchronization Server Option (OPTION_REVERSE_SYNC_SERVER).</li>
+<li>2) The DHCP Server makes the Client Public Key available to the DNS servers, so the HNA can secure its DNS transactions. How the Client Public Key is transmitted to the various DNS servers is out of scope of this document. Note that the Client Public Key alone is not sufficient to perform the authentication and the key should be, for example, associated with an identifier, or the concerned domain name. How the binding is performed is out of scope of the document. It can be a centralized database or various bindings may be sent to the different servers. <a href="#fig-protocol-overview" class="xref">Figure 1</a> represents the specific case where the DHCP Server forwards the set (Client Public Key, Zone Template FQDN) to the DNS Template Server, the set (Client Public Key, IPv6 subnet) to the Reverse Synchronization Server and the set (Client Public Key, Registered Homenet Domain) to the Synchronization Server.</li>
+<li>3) The DHCP Server responds to the HNA with the requested DHCPv6 options, i.e. the Client Public Key Option (OPTION_PUBLIC_KEY), Zone Template Option OPTION_DNS_ZONE_TEMPLATE, Synchronization Server Option (OPTION_SYNC_SERVER), Reverse Synchronization Server Option (OPTION_REVERSE_SYNC_SERVER). Note that this step may be performed in parallel to step 2, or even before. In other words, there is no requirements that step 3 is conducted after step 2.</li>
+<li>4) Upon receiving the Zone Template Option (OPTION_DNS_ZONE_TEMPLATE), the HNA performs an AXFR DNS query for the Zone Template FQDN. The exchange is authenticated  according to the authentication methods defined in the Supported Authentication Methods field of the DHCP option. Once the HNA has retrieved the DNS Zone Template, the HNA can build the Homenet Zone and the Homenet Reverse Zone. Eventually the HNA signs these zones.</li>
+<li>5) Once the Homenet Reverse Zone has been set, the HNA uploads the zone to the Reverse Synchronization Server. The Reverse Synchronization Server Option (OPTION_REVERSE_SYNC_SERVER) provides the Reverse Synchronization Server FQDN as well as the upload method, and the Supported Authentication Methods protocol to secure the upload.</li>
+</ul>
+<p id="rfc.section.4.1.p.5">6) Once the Homenet Zone has been set, the HNA uploads the zone to the Synchronization Server. The Synchronization Server Option (OPTION_SYNC_SERVER) provides the Synchronization Server FQDN as well as the upload method and the authentication method to secure the upload.</p>
+<div id="rfc.figure.1"></div>
+<div id="fig-protocol-overview"></div>
+<pre>
+     +---------------------+
+     |    DHCPv6 Server    |
+     +---------------------+
+          ^  ^         ^
+          |  |         |
+        1.|  |3.       |2.
+          |  |         |
+          v  v         |
+        +------+       |    +--------------------------------+
+        |      |  4.   +---&gt;|  DNS Template Server           |
+        |      |&lt;----------&gt;|                                |
+        |      |       |    +--------------------------------+
+        | HNA  |       |
+        |      |       |    +--------------------------------+
+        |      | 5./6. +---&gt;|  Reverse Synchronization       |
+        |      |&lt;----------&gt;|  Server                        |
+        |      |       |    +--------------------------------+
+        |      |       |
+        |      |       |    +--------------------------------+
+        +------+       +---&gt;|  Synchronization Server        |
+                            |                                |
+                            +--------------------------------+
+</pre>
+<p class="figure">Figure 1: Protocol Overview</p>
+<p id="rfc.section.4.1.p.6">As described above, the HNA is likely to interact with various DNS content. More specifically, the HNA is likely to update the:</p>
+<p></p>
+
+<ul>
+<li>Homenet Zone Template: if the configuration of the zone may be changed.  This may include additional Public Authoritative Server(s), a different Registered Homenet Domain as the one initially proposed, or a redirection to another domain.</li>
+<li>Homenet Reverse Zone: every time a new device is connected or dis-connected.</li>
+<li>Homenet Zone: every time a new device is connected, dis-connected.</li>
+</ul>
+<p id="rfc.section.4.1.p.8">Step 2 and step 3 should be considered as independent steps and could be re-ordered. In fact, the DHCPv6 server does not have to wait for a confirmation from the DNS servers the Client Public Key has been properly received, and is operational by the DNS servers. The DHCP Server is expected to reply upon receiving the Client Public Key Option.  The reply to the message with a Client Public Key Option from the DHCP Server is interpreted by the DHCPv6 client as a confirmation of the reception of the option by the DHCP Server only. It does not indicate whether the server had processed the option or not. Debugging configurations errors or transmission error with one of the DNS servers is let to the HNA and thus is outside of the scope of the DHCPv6.</p>
+<p id="rfc.section.4.1.p.9">First, it is unlikely a DNS server can validate that the Client Public Key will be operational for the HNA, as multiple causes of errors could occur. For example, the Client Public Key may have been changed during the transmission or by the DHCP Server, or the DNS server may be misconfigured.  Second, the number of error codes would be too complex.  In addition to multiple causes of errors, multiple architectures and multiple DNS servers may be involved.</p>
+<p id="rfc.section.4.1.p.10">Third, this may cause significant DHCP Server performance degradation.</p>
+<p id="rfc.section.4.1.p.11">In fact, the HNA performs these updates in a secure manner. There are multiple ways to secure a DNS transaction and this document considers two mechanisms: nsupdate and primary/secondary synchronization.  <a href="#sec-sec-exchange" class="xref">Section 4.2</a>  describes the authentication method that may be use to secure the DNS transactions of the HNA. The appropriate authentication methods may, for example, be chosen according to the level of confidentiality or the level of authentication requested by the HNA transactions.  <a href="#sec-update" class="xref">Section 4.3</a> positions the nsupdate and primary/secondary synchronization mechanisms. The update appropriate update mechanism  may depend on the for example on the update frequency or the size of the DNS data to update.</p>
+<h2 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#sec-sec-exchange" id="sec-sec-exchange">Mechanisms Securing DNS Transactions</a>
+</h2>
+<p id="rfc.section.4.2.p.1">Multiple protocols like IPsec <a href="#RFC4301" class="xref">[RFC4301]</a> or TLS / DTLS <a href="#RFC5246" class="xref">[RFC5246]</a> / <a href="#RFC6347" class="xref">[RFC6347]</a> may be used to secure DNS transactions between the HNA and the DNS servers. This document limits its scope to authentication method that have been designed specifically for DNS. This includes DNSSEC <a href="#RFC4033" class="xref">[RFC4033]</a>, <a href="#RFC4034" class="xref">[RFC4034]</a>, <a href="#RFC4035" class="xref">[RFC4035]</a> that authenticates and provides integrity protection of DNS data, TSIG <a href="#RFC2845" class="xref">[RFC2845]</a>, <a href="#RFC2930" class="xref">[RFC2930]</a> that use a shared secret to secure a transaction between two end points and SIG(0) <a href="#RFC2931" class="xref">[RFC2931]</a> authenticates the DNS packet exchanged.</p>
+<p id="rfc.section.4.2.p.2">The key issue with TSIG is that a shared secret must be negotiated between the HNA and the server. On the other hand, TSIG performs symmetric cryptography which is light in comparison with asymmetric cryptography used by SIG(0). As a result, over large zone transfer, TSIG may be preferred to SIG(0).</p>
+<p id="rfc.section.4.2.p.3">This document does not provide means to distribute shared secret for example using a specific DHCPv6 option. The only assumption made is that the HNA generates or is assigned a public key.</p>
+<p id="rfc.section.4.2.p.4">As a result, when the document specifies the transaction is secured with TSIG, it means that either the HNA and the DNS server have been manually configured with a shared secret, or the shared secret has been negotiated using TKEY <a href="#RFC2930" class="xref">[RFC2930]</a>, and the TKEY exchanged are secured with SIG(0).</p>
+<p id="rfc.section.4.2.p.5">Exchanges with the DNS Template Server to retrieve the Homenet Zone Template may be protected by SIG(0), TSIG or DNSSEC. When DNSSEC is used, it means the DNS Template Server only provides integrity protection, and does not necessarily prevent someone else to query the Homenet Zone Template. In addition, DNSSEC is only a way to protect the AXFR queries transaction, in other words, DNSSEC cannot be used to secure updates. If DNSSEC is used to provide integrity protection for the AXFR response, the HNA should proceed to the DNSSEC signature checks. If signature check fails, it MUST reject the response. If the signature check succeeds, the HNA removes all DNSSEC related RRsets (DNSKEY, RRSIG, NSEC* &#8230;) before building the Homenet Zone. In fact, these DNSSEC related fields are associated to the Homenet Zone Template and not the Homenet Zone.</p>
+<p id="rfc.section.4.2.p.6">Any update exchange should use SIG(0) or TSIG to authenticate the exchange.</p>
+<h2 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#sec-update" id="sec-update">Primary / Secondary Synchronization versus DNS Update</a>
+</h2>
+<p id="rfc.section.4.3.p.1">As updates only concern DNS zones, this document only considers DNS update mechanisms such as DNS update  <a href="#RFC2136" class="xref">[RFC2136]</a>  <a href="#RFC3007" class="xref">[RFC3007]</a> or a primary / secondary synchronization.</p>
+<p id="rfc.section.4.3.p.2">The Homenet Zone Template SHOULD be updated with DNS update as it contains static configuration data that is not expected to evolve over time.</p>
+<p id="rfc.section.4.3.p.3">The Homenet Reverse Zone and the Homenet Zone can be updated either with DNS update or using a primary / secondary synchronization. As these zones may be large, with frequent updates, we recommend to use the primary / secondary architecture as described in <a href="#I-D.ietf-homenet-front-end-naming-delegation" class="xref">[I-D.ietf-homenet-front-end-naming-delegation]</a>. The primary / secondary mechanism is preferred as it better scales and avoids DoS attacks: First the primary notifies the secondary the zone must be updated, and leaves the secondary to proceed to the update when possible. Then, the NOTIFY message sent by the primary is a small packet that is less likely to load the secondary. At last, the AXFR query performed by the secondary is a small packet sent over TCP (section 4.2 <a href="#RFC5936" class="xref">[RFC5936]</a>) which makes unlikely the secondary to perform reflection attacks with a forged NOTIFY. On the other hand, DNS updates can use UDP, packets require more processing than a NOTIFY, and they do not provide the server the opportunity to postpone the update.</p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#sec-cpe-configuration" id="sec-cpe-configuration">HNA Configuration</a>
+</h1>
+<h2 id="rfc.section.5.1">
+<a href="#rfc.section.5.1">5.1.</a> <a href="#sec-cpe-ms-settings" id="sec-cpe-ms-settings">HNA Primary / Secondary Synchronization Configurations</a>
+</h2>
+<p id="rfc.section.5.1.p.1">The primary / secondary architecture is described in <a href="#I-D.ietf-homenet-front-end-naming-delegation" class="xref">[I-D.ietf-homenet-front-end-naming-delegation]</a>. The HNA hosts a Hidden Primary that synchronizes with a  Synchronization Server or the Reverse Synchronization Server.</p>
+<p id="rfc.section.5.1.p.2">When the HNA is plugged its IP address may be unknown to the secondary.  The section details how the HNA or primary communicates the necessary information to set up the secondary.</p>
+<p id="rfc.section.5.1.p.3">In order to set the primary / secondary configuration, both primary and secondaries must agree on 1) the zone to be synchronized, 2) the IP address and ports used by both primary and secondary.</p>
+<h2 id="rfc.section.5.2">
+<a href="#rfc.section.5.2">5.2.</a> <a href="#sec-cpe-nsset" id="sec-cpe-nsset">HNA / Synchronization Server</a>
+</h2>
+<p id="rfc.section.5.2.p.1">The HNA is aware of  the zone to be synchronized by reading the Registered Homenet Domain in the Homenet Zone Template provided by the Zone Template Option (OPTION_DNS_ZONE_TEMPLATE). The IP address of the secondary is provided by the Synchronization Server Option (OPTION_SYNC_SERVER).</p>
+<p id="rfc.section.5.2.p.2">The Synchronization Server has been configured with the Registered Homenet Domain and the Client Public Key that identifies the HNA. The only missing information is the IP address of the HNA. This IP address is provided by the HNA by sending a NOTIFY <a href="#RFC1996" class="xref">[RFC1996]</a>.</p>
+<p id="rfc.section.5.2.p.3">When the HNA has built its Homenet Zone, it sends a NOTIFY message to the Synchronization Servers. Upon receiving the NOTIFY message, the secondary reads the Registered Homenet Domain and checks the NOTIFY is sent by the authorized primary. This can be done using the shared secret (TSIG) or the public key (SIG(0)). Once the NOTIFY has been authenticated, the Synchronization Servers might consider the source IP address of the NOTIFY query to configure the primaries attributes.</p>
+<h3 id="rfc.section.5.2.1">
+<a href="#rfc.section.5.2.1">5.2.1.</a> <a href="#hna-reverse-synchronization-server" id="hna-reverse-synchronization-server">HNA / Reverse Synchronization Server</a>
+</h3>
+<p id="rfc.section.5.2.1.p.1">The HNA is aware of  the zone to be synchronized by looking at its assigned prefix. The IP address of the secondary is provided by the Reverse Synchronization Server Option (OPTION_REVERSE_SYNC_SERVER).</p>
+<p id="rfc.section.5.2.1.p.2">Configuration of the secondary is performed as illustrated in <a href="#sec-cpe-nsset" class="xref">Section 5.2</a>.</p>
+<h2 id="rfc.section.5.3">
+<a href="#rfc.section.5.3">5.3.</a> <a href="#sec-cpe-updates" id="sec-cpe-updates">HNA DNS Data Handling</a>
+</h2>
+<h3 id="rfc.section.5.3.1">
+<a href="#rfc.section.5.3.1">5.3.1.</a> <a href="#homenet-zone-template" id="homenet-zone-template">Homenet Zone Template</a>
+</h3>
+<p id="rfc.section.5.3.1.p.1">The Homenet Zone Template contains at least the related fields of the Public Authoritative Server(s) as well as the Homenet Registered Domain, that is SOA, and NS fields. This template might be generated automatically by the owner of the DHCP Server. For example, an ISP might provide a default Homenet Registered Domain as well as default Public Authoritative Server(s). This default settings should provide the HNA the necessary pieces of information to set the homenet naming architecture.</p>
+<p id="rfc.section.5.3.1.p.2">If the Homenet Zone Template is not subject to modifications or updates, the owner of the template might only use DNSSEC to enable integrity check.</p>
+<p id="rfc.section.5.3.1.p.3">On the other hand, the Homenet Zone Template might also be subject to modification by the HNA. The advantage of using the standard DNS zone format is that standard DNS update mechanism can be used to perform updates. These updates might be accepted or rejected by the owner of the Homenet Zone Template. Policies that defines what is accepted or rejected is out of scope of this document. However, this document assumes the Registered Homenet Domain is used as an index by the Synchronization Server, and SIG(0), TSIG are used to authenticate the HNA. As a result, the Registered Homenet Domain should not be modified unless the Synchronization Server can handle with it.</p>
+<h3 id="rfc.section.5.3.2">
+<a href="#rfc.section.5.3.2">5.3.2.</a> <a href="#dns-reverse-homenet-zone" id="dns-reverse-homenet-zone">DNS (Reverse) Homenet Zone</a>
+</h3>
+<p id="rfc.section.5.3.2.p.1">The Homenet Zone might be generated from the Homenet Zone Template. How the Homenet Zone is generated is out of scope of this document. In some cases, the Homenet Zone might be the exact copy of the Homenet Zone Template. In other cases, it might be generated from the Homenet Zone Template with additional RRsets. In some other cases, the Homenet Zone might be generated without considering the Homenet Zone Template, but only considering specific configuration rules.</p>
+<p id="rfc.section.5.3.2.p.2">In the current document the HNA only sets a single zone that is associated with one single Homenet Registered Domain. The domain might be assigned by the owner of the Homenet Zone Template. This constraint does not prevent the HNA to use multiple domain names. How additional domains are considered is out of scope of this document. One way to handle these additional zones is to configure static redirections to the Homenet Zone using CNAME <a href="#RFC2181" class="xref">[RFC2181]</a>, <a href="#RFC1034" class="xref">[RFC1034]</a>, DNAME <a href="#RFC6672" class="xref">[RFC6672]</a> or CNAME+DNAME <a href="#I-D.sury-dnsext-cname-dname" class="xref">[I-D.sury-dnsext-cname-dname]</a>.</p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#sec-format" id="sec-format">Payload Description</a>
+</h1>
+<p id="rfc.section.6.p.1">This section details the payload of the DHCPv6 options. A few DHCPv6 options are used to advertise a server the HNA may be expected to interact with. Interaction may require to define update and authentication methods. Update fields are shared by multiple DHCPv6 options and are described in separate sections. <a href="#sec-sec-field" class="xref">Section 6.1</a> describes the Supported Authentication Method field, <a href="#sec-update-field" class="xref">Section 6.1.1</a> describes the Update field, the remaining <a href="#sec-key" class="xref">Section 6.2</a>,  <a href="#sec-zone-template" class="xref">Section 6.3</a>,  <a href="#sec-auth-ns-set" class="xref">Section 6.4</a>, <a href="#sec-auth-rns" class="xref">Section 6.5</a> describe the DHCPv6 options.</p>
+<h2 id="rfc.section.6.1">
+<a href="#rfc.section.6.1">6.1.</a> <a href="#sec-sec-field" id="sec-sec-field">Supported Authentication Methods Field</a>
+</h2>
+<p id="rfc.section.6.1.p.1">The Supported Authentication Methods field of the DHCPv6 option represented in <a href="#fig-sec-field" class="xref">Figure 2</a> indicates the authentication method supported by the DNS server. One of these mechanism MUST be chosen by the HNA in order to perform a transaction with the DNS server. See <a href="#sec-sec-exchange" class="xref">Section 4.2</a> for more details.</p>
+<div id="rfc.figure.2"></div>
+<div id="fig-sec-field"></div>
+<pre>
+ 0                   1                  
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|    Supported Auth. Methods    |                                   
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                                   
+</pre>
+<p class="figure">Figure 2: Supported Authentication Methods Filed</p>
+<pre>
+                    &lt;t hangText="- 
+</pre>
+<p></p>
+
+<ul>
+<li>DNS (Bit 0): indicates, when set to 1, that DNS without any security extension is supported.</li>
+<li>DNSSEC (Bit 1): indicates, when set to 1, that DNSSEC provides integrity protection. This can only be used for read operations like retrieving the Homenet Zone Template.</li>
+<li>SIG(0) (Bit 2): indicates, when set to 1, that transaction protected by SIG(0) are supported.</li>
+<li>TSIG (Bit 3): indicates, when set to 1, that transaction using TSIG is supported. Note that if a shared secret has not been previously negotiated between the two party, it should be negotiated using TKEY.  The TKEY exchanges MUST be protected with SIG(0) even though SIG(0) is not supported.</li>
+</ul>
+<p id="rfc.section.6.1.p.3">Remaining Bits (Bit 4-15): MUST be set to 0 by the DHCP Server and MUST be ignored by the DHCPv6 client.</p>
+<p id="rfc.section.6.1.p.4">A Supported Authentication Methods field with all bits set to zero indicates the operation is not permitted. The Supported Authentication Methods field may be set to zero when updates operations are not permitted for the DNS Homenet Template. In any other case this is an error.</p>
+<h3 id="rfc.section.6.1.1">
+<a href="#rfc.section.6.1.1">6.1.1.</a> <a href="#sec-update-field" id="sec-update-field">Update Field</a>
+</h3>
+<p id="rfc.section.6.1.1.p.1">The Update Field of the DHCPv6 option is represented in <a href="#fig-update-field" class="xref">Figure 3</a>. It indicates the update mechanism supported by the DNS server. See <a href="#sec-update" class="xref">Section 4.3</a> for more details.</p>
+<div id="rfc.figure.3"></div>
+<div id="fig-update-field"></div>
+<pre>
+ 0                                 
+ 0 1 2 3 4 5 6 7
++-+-+-+-+-+-+-+-+
+|    Update     |                                           
++-+-+-+-+-+-+-+-+                                 
+</pre>
+<p class="figure">Figure 3: Update Field</p>
+<p></p>
+
+<ul>
+<li>Primary / Secondary (Bit 0): indicates, when set to 1, that DNS Server supports data synchronization using a Primary / Secondary mechanism.</li>
+<li>DNS Update (Bit 1): indicates, when set to 1, that DNS Server supports data synchronization using DNS Updates.</li>
+<li>Remaining Bits (Bit 2-7): MUST be set to 0 by the DHCPv6 server and MUST be ignored by the DHCPv6 client.</li>
+</ul>
+<h2 id="rfc.section.6.2">
+<a href="#rfc.section.6.2">6.2.</a> <a href="#sec-key" id="sec-key">Client Public Key Option</a>
+</h2>
+<p id="rfc.section.6.2.p.1">The Client Public Key Option (OPTION_PUBLIC_KEY) indicates the Client Public Key that is used to authenticate the HNA. This option is defined in <a href="#I-D.ietf-dhc-sedhcpv6" class="xref">[I-D.ietf-dhc-sedhcpv6]</a>.</p>
+<h2 id="rfc.section.6.3">
+<a href="#rfc.section.6.3">6.3.</a> <a href="#sec-zone-template" id="sec-zone-template">Zone Template Option</a>
+</h2>
+<p id="rfc.section.6.3.p.1">The Zone Template Option (OPTION_DNS_ZONE_TEMPLATE) Option indicates the HNA how to retrieve the Homenet Zone Template. It provides a FQDN the HNA SHOULD query with a DNS query of type AXFR as well as the authentication methods associated to the AXFR query or the nsupdate queries. Homenet Zone Template update, if permitted MUST use the DNS Update mechanism.</p>
+<div id="rfc.figure.4"></div>
+<div id="fig-zone-template"></div>
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|    OPTION_DNS_ZONE_TEMPLATE   |          option-len           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Supp. Auth. Methods (axfr)    | Supp. Auth. Methods (update)  |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
+/                        Zone Template FQDN                     /
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<p class="figure">Figure 4: Zone Template Option</p>
+<p></p>
+
+<ul>
+<li>option-code: (16 bits): OPTION_DNS_ZONE_TEMPLATE, the option code for the Zone Template Option (TBD1).</li>
+<li>option-len (16 bits): length in octets of the option-data field as described in <a href="#RFC3315" class="xref">[RFC3315]</a>.</li>
+<li>Supported Authentication Methods(axfr) (16 bits): defines which authentication methods are supported by the DNS server. This field concerns the AXFR and consultation queries, not the update queries. See <a href="#sec-sec-field" class="xref">Section 6.1</a> for more details.</li>
+<li>Supported Authentication Methods (16 bits): defines which authentication methods are supported by the DNS server. This field concerns the update.  See <a href="#sec-sec-field" class="xref">Section 6.1</a> for more details.</li>
+<li>Zone Template FQDN FQDN (variable): the FQDN of the DNS server hosting the Homenet Zone Template.</li>
+</ul>
+<h2 id="rfc.section.6.4">
+<a href="#rfc.section.6.4">6.4.</a> <a href="#sec-auth-ns-set" id="sec-auth-ns-set">Synchronization Server Option</a>
+</h2>
+<p id="rfc.section.6.4.p.1">The Synchronization Server Option (OPTION_SYNC_SERVER) provides information necessary for the HNA to upload the Homenet Zone to the Synchronization Server. Finally, the option provides the authentication methods that are available to perform the upload. The upload is performed via a DNS primary / secondary architecture or DNS updates.</p>
+<pre>
+ 0                   1                        2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|        OPTION_SYNC_SERVER     |          option-len           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Supported Auth. Methods       |    Update     |     Server    /
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+/     Port      |                                               |
++-+-+-+-+-+-+-+-+                                               |
+|                                                               |
+/                    Synchronization Server FQDN                /
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<p id="rfc.section.6.4.p.2">{ #fig-name-srv-set title="Synchronization Server Option"}</p>
+<p></p>
+
+<ul>
+<li>option-code (16 bits): OPTION_SYNC_SERVER, the option code for the Synchronization Server Option (TBD2).</li>
+<li>option-len (16 bits): length in octets of the option-data field as described in <a href="#RFC3315" class="xref">[RFC3315]</a>.</li>
+<li>Supported Authentication Methods (16 bits): defines which authentication methods are supported by the DNS server. See <a href="#sec-sec-field" class="xref">Section 6.1</a> for more details.</li>
+<li>Update (8 bits): defines which update mechanisms are supported by the DNS server. See <a href="#sec-update" class="xref">Section 4.3</a> for more details.</li>
+<li>Server Port (16 bits): defines the port the Synchronization Server is listening. When multiple transport layers may be used, a single and unique Server Port value applies to all the transport layers. In the case of DNS for example, Server Port value considers DNS exchanges using UDP and TCP.</li>
+<li>Synchronization Server FQDN (variable): the FQDN of the Synchronization Server.</li>
+</ul>
+<h2 id="rfc.section.6.5">
+<a href="#rfc.section.6.5">6.5.</a> <a href="#sec-auth-rns" id="sec-auth-rns">Reverse Synchronization Server Option</a>
+</h2>
+<p id="rfc.section.6.5.p.1">The Reverse Synchronization Server Option (OPTION_REVERSE_SYNC_SERVER) provides information necessary for the HNA to upload the Homenet Zone to the Synchronization Server. The option provides the authentication methods that are available to perform the upload. The upload is performed via a DNS primary / secondary architecture or DNS updates.</p>
+<div id="rfc.figure.5"></div>
+<div id="fig-rever-srv-name-set"></div>
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  OPTION_REVERSE_SYNC_SERVER   |         option-len            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Supported Auth. Methods       |     Update    |   Server      /
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+/         Port    |                                             |
++-+-+-+-+-+-+-+-+-+                                             |
+|                                                               |
+/                Reverse Synchronization Server FQDN            /
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<p class="figure">Figure 5: Reverse Synchronization Server Option</p>
+<p></p>
+
+<ul>
+<li>option-code (16 bits): OPTION_REVERSE_SYNC_SERVER, the option code for the Reverse Synchronization Server Option (TBD3).</li>
+<li>option-len (16 bits): length in octets of the option-data field as described in <a href="#RFC3315" class="xref">[RFC3315]</a>.</li>
+<li>Supported Authentication Methods (16 bits)" defines which authentication methods are supported by the DNS server. See <a href="#sec-sec-field" class="xref">Section 6.1</a> for more details.</li>
+<li>Update (8 bits): defines which update mechanisms are supported by the DNS server. See <a href="#sec-update" class="xref">Section 4.3</a> for more details.</li>
+<li>Server Port (16 bits): defines the port the Synchronization Server is listening.</li>
+<li>Reverse Synchronization Server FQDN (variable): The FQDN of the Reverse Synchronization Server.</li>
+</ul>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#sec-dhcp-behavior" id="sec-dhcp-behavior">DHCP Behavior</a>
+</h1>
+<h2 id="rfc.section.7.1">
+<a href="#rfc.section.7.1">7.1.</a> <a href="#dhcpv6-server-behavior" id="dhcpv6-server-behavior">DHCPv6 Server Behavior</a>
+</h2>
+<p id="rfc.section.7.1.p.1">Sections 17.2.2 and 18.2 of <a href="#RFC3315" class="xref">[RFC3315]</a> govern server operation in regards to option assignment.  As a convenience to the reader, we mention here that the server will send option foo only if configured with specific values for foo and if the client requested it. In particular, when configured the DHCP Server sends the Zone Template Option, Synchronization Server Option, Reverse Synchronization Server Option when requested by the DHCPv6 client by including necessary option codes in its ORO.</p>
+<p id="rfc.section.7.1.p.2">The DHCP Server may receive a Client Public Key Option (OPTION_PUBLIC_KEY) from the HNA. Upon receipt of this DHCPv6 option, the DHCP Server SHOULD acknowledge the reception of the Client Public Key Option as described in <a href="#sec-arch" class="xref">Section 4.1</a> and communicate this credential to the available DNS Servers like the DNS Template Server, the Synchronization Server and the Reverse Synchronization Server, unless not configured to do so.</p>
+<p id="rfc.section.7.1.p.3">A HNA may update its Client Public Key by sending a new value in the Client Public Key Option (OPTION_PUBLIC_KEY) as this document assumes the link between the HNA and the DHCP Server is considered authenticated and trusted. The server SHOULD process received Client Public Key Option sent by the client (see step 2 in <a href="#sec-arch" class="xref">Section 4.1</a>), unless not configured to do so.</p>
+<h2 id="rfc.section.7.2">
+<a href="#rfc.section.7.2">7.2.</a> <a href="#dhcpv6-client-behavior" id="dhcpv6-client-behavior">DHCPv6 Client Behavior</a>
+</h2>
+<p id="rfc.section.7.2.p.1">The DHCPv6 client SHOULD send a Client Public Key Option (OPTION_PUBLIC_KEY) to the DHCP Server. This Client Public Key authenticates the HNA.</p>
+<p id="rfc.section.7.2.p.2">The DHCPv6 client sends a ORO with the necessary option codes: Zone Template Option, Synchronization Server Option and Reverse Synchronization Server Option.</p>
+<p id="rfc.section.7.2.p.3">Upon receiving a DHCP option described in this document in the Reply message, the HNA SHOULD retrieve or update DNS zones using the associated Supported Authentication Methods and update protocols, as described in <a href="#sec-cpe-configuration" class="xref">Section 5</a>.</p>
+<h2 id="rfc.section.7.3">
+<a href="#rfc.section.7.3">7.3.</a> <a href="#sec-dhcp-relay" id="sec-dhcp-relay">DHCPv6 Relay Agent Behavior</a>
+</h2>
+<p id="rfc.section.7.3.p.1">There are no additional requirements for the DHCP Relay agents.</p>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#sec-iana" id="sec-iana">IANA Considerations</a>
+</h1>
+<p id="rfc.section.8.p.1">The DHCP options detailed in this document is: * OPTION_DNS_ZONE_TEMPLATE: TBD1 * OPTION_SYNC_SERVER: TBD2 * OPTION_REVERSE_SYNC_SERVER: TBD3</p>
+<h1 id="rfc.section.9">
+<a href="#rfc.section.9">9.</a> <a href="#security-considerations" id="security-considerations">Security Considerations"</a>
+</h1>
+<h2 id="rfc.section.9.1">
+<a href="#rfc.section.9.1">9.1.</a> <a href="#dnssec-is-recommended-to-authenticate-dns-hosted-data" id="dnssec-is-recommended-to-authenticate-dns-hosted-data">DNSSEC is recommended to authenticate DNS hosted data</a>
+</h2>
+<p id="rfc.section.9.1.p.1">It is recommended that the (Reverse) Homenet Zone is signed with DNSSEC. The zone may be signed by the HNA or by a third party. We recommend the zone to be signed by the HNA, and that the signed zone is uploaded.</p>
+<h2 id="rfc.section.9.2">
+<a href="#rfc.section.9.2">9.2.</a> <a href="#channel-between-the-hna-and-isp-dhcp-server-must-be-secured" id="channel-between-the-hna-and-isp-dhcp-server-must-be-secured">Channel between the HNA and ISP DHCP Server MUST be secured</a>
+</h2>
+<p id="rfc.section.9.2.p.1">The channel MUST be secured because the HNA provides authentication credentials. Unsecured channel may result in HNA impersonation attacks.</p>
+<p id="rfc.section.9.2.p.2">The document considers that the channel between the HNA and the ISP DHCP Server is trusted. More specifically, the HNA is authenticated and the exchanged messages are protected. The current document does not specify how to secure the channel.  <a href="#RFC3315" class="xref">[RFC3315]</a> proposes a DHCP authentication and message exchange protection, <a href="#RFC4301" class="xref">[RFC4301]</a>, <a href="#RFC7296" class="xref">[RFC7296]</a> propose to secure the channel at the IP layer.</p>
+<h2 id="rfc.section.9.3">
+<a href="#rfc.section.9.3">9.3.</a> <a href="#hnas-are-sensitive-to-dos" id="hnas-are-sensitive-to-dos">HNAs are sensitive to DoS</a>
+</h2>
+<p id="rfc.section.9.3.p.1">HNA have not been designed for handling heavy load.  The HNA are exposed on the Internet, and their IP address is publicly published on the Internet via the DNS. This makes the Home Network sensitive to Deny of Service Attacks. The resulting outsourcing architecture is described in <a href="#I-D.ietf-homenet-front-end-naming-delegation" class="xref">[I-D.ietf-homenet-front-end-naming-delegation]</a>. This document shows how the outsourcing architecture can be automatically set.</p>
+<h1 id="rfc.section.10">
+<a href="#rfc.section.10">10.</a> <a href="#acknowledgments" id="acknowledgments">Acknowledgments</a>
+</h1>
+<p id="rfc.section.10.p.1">We would like to thank Marcin Siodelski and Bernie Volz for their comments on the design of the DHCPv6 options. We would also like to thank Mark Andrews, Andrew Sullivan and Lorenzo Colliti for their remarks on the architecture design. The designed solution has been largely been inspired by Mark Andrews's document <a href="#I-D.andrews-dnsop-pd-reverse" class="xref">[I-D.andrews-dnsop-pd-reverse]</a> as well as discussions with Mark. We also thank Ray Hunter for its reviews, its comments and for suggesting an appropriated terminology.</p>
+<h1 id="rfc.section.11">
+<a href="#rfc.section.11">11.</a> <a href="#sec-scenario" id="sec-scenario">Scenarios and impact on the End User</a>
+</h1>
+<p id="rfc.section.11.p.1">This section details various scenarios and discuss their impact on the end user.</p>
+<h1 id="rfc.section.12">
+<a href="#rfc.section.12">12.</a> <a href="#sec-scenario-1" id="sec-scenario-1">Base Scenario</a>
+</h1>
+<p id="rfc.section.12.p.1">The base scenario is the one described in  <a href="#sec-overview" class="xref">Section 4</a>. It is typically the one of an ISP that manages the DHCP Server, and all DNS servers.</p>
+<p id="rfc.section.12.p.2">The end user subscribes to the ISP (foo), and at subscription time registers for example.foo as its Registered Homenet Domain example.foo.  Since the ISP knows the Registered Homenet Domain and the Public Authoritative Server(s) the ISP is able to build the Homenet Zone Template.</p>
+<p id="rfc.section.12.p.3">The ISP manages the DNS Template Server, so it is able to load the Homenet Zone Template on the DNS Template Server.</p>
+<p id="rfc.section.12.p.4">When the HNA is plugged (at least the first time), it provides its Client Public Key to the DHCP Server. In this scenario, the DHCP Server and the DNS Servers are managed by the ISP so the DHCP Server can provide authentication credentials of the HNA to enable secure authenticated transaction between the HNA and these DNS servers. More specifically, credentials are provided to:</p>
+<p></p>
+
+<ul>
+<li>Synchronization Server</li>
+<li>Reverse Synchronization Server</li>
+<li>DNS Template Server</li>
+</ul>
+<p id="rfc.section.12.p.6">The HNA can update the zone using DNS update or a primary / secondary configuration in a secure way.</p>
+<p id="rfc.section.12.p.7">The main advantage of this scenario is that the naming architecture is configured automatically and transparently for the end user.  The drawbacks are that the end user uses a Registered Homenet Domain managed by the ISP and that it relies on the ISP naming infrastructure.</p>
+<h2 id="rfc.section.12.1">
+<a href="#rfc.section.12.1">12.1.</a> <a href="#scenario-2" id="scenario-2">Third Party Registered Homenet Domain</a>
+</h2>
+<p id="rfc.section.12.1.p.1">This section considers the case when the end user wants its home network to use example.com as a Registered Homenet Domain instead of example.foo that has been assigned by the ISP. We also suppose that example.com is not managed by the ISP.</p>
+<p id="rfc.section.12.1.p.2">This can also be achieved without any configuration. When the end user buys the domain name example.com, it may request to redirect the name example.com to example.foo using static redirection with CNAME <a href="#RFC2181" class="xref">[RFC2181]</a>, <a href="#RFC1034" class="xref">[RFC1034]</a>, DNAME <a href="#RFC6672" class="xref">[RFC6672]</a> or CNAME+DNAME <a href="#I-D.sury-dnsext-cname-dname" class="xref">[I-D.sury-dnsext-cname-dname]</a>.</p>
+<p id="rfc.section.12.1.p.3">This configuration is performed once when the domain name example.com is registered. The only information the end user needs to know is the domain name assigned by the ISP. Once this configuration is done no additional configuration is needed anymore. More specifically, the HNA may be changed, the zone can be updated as in <a href="#sec-scenario-1" class="xref">Section 12</a> without any additional configuration from the end user.</p>
+<p id="rfc.section.12.1.p.4">The main advantage of this scenario is that the end user benefits from the Zero Configuration of the Base Scenario <a href="#sec-scenario-1" class="xref">Section 12</a>. Then, the end user is able to register for its home network an unlimited number of domain names provided by an unlimited number of different third party providers.  he drawback of this scenario may be that the end user still rely on the ISP naming infrastructure. Note that the only case this may be inconvenient is when the DNS Servers provided by the ISPs results in high latency.</p>
+<h2 id="rfc.section.12.2">
+<a href="#rfc.section.12.2">12.2.</a> <a href="#scenario-3" id="scenario-3">Third Party DNS Infrastructure</a>
+</h2>
+<p id="rfc.section.12.2.p.1">This scenario considers that the end user uses example.com as a Registered Homenet Domain, and does not want to rely on the authoritative servers provided by the ISP.</p>
+<p id="rfc.section.12.2.p.2">In this section we limit the outsourcing to the Synchronization Server and Public Authoritative Server(s) to a third party. All other DNS Servers DNS Template Server, Reverse Public Authoritative Server(s) and Reverse Synchronization Server remain managed by the ISP. The reason we consider that Reverse Public Authoritative Server(s) and Reverse Synchronization Server remains managed by the ISP are that the prefix is managed by the ISP, so outsourcing these resources requires some redirection agreement with the ISP. More specifically the ISP will need to configure the redirection on one of its Reverse DNS Servers. That said, outsourcing these resources is similar as outsourcing Synchronization Server and Public Authoritative Server(s) to a third party. Similarly, the DNS Template Server can be easily outsourced as detailed in this section</p>
+<p id="rfc.section.12.2.p.3">Outsourcing Synchronization Server and Public Authoritative Server(s) requires:</p>
+<p></p>
+
+<ul>
+<li>1) Updating the Homenet Zone Template: this can be easily done as detailed in <a href="#sec-update" class="xref">Section 4.3</a> as the DNS Template Server is still managed by the ISP. Such modification can be performed once by any HNA. Once this modification has been performed, the HNA can be changed, the Client Public Key of the HNA may be changed, this does not need to be done another time. One can imagine a GUI on the HNA asking the end user to fill the field with Registered Homenet Domain, optionally Public Authoritative Server(s), with a button "Configure Homenet Zone Template".</li>
+<li>2) Updating the DHCP Server Information. In fact the Reverse Synchronization Server returned by the ISP is modified. One can imagine a GUI interface that enables the end user to modify its profile parameters. Again, this configuration update is done once-for-ever.</li>
+<li>3) Upload the authentication credential of the HNA, that is the Client Public Key of the HNA, to the third party. Unless we use specific mechanisms, like communication between the DHCP Server and the third party, or a specific token that is plugged into the HNA, this operation is likely to be performed every time the HNA is changed, and every time the Client Public Key generated by the HNA is changed.</li>
+</ul>
+<p id="rfc.section.12.2.p.5">The main advantage of this scenario is that the DNS infrastructure is completely outsourced to the third party. Most likely the Client Public Key that authenticate the HNA need to be configured for every HNA.  Configuration is expected to be HNA live-long.</p>
+<h2 id="rfc.section.12.3">
+<a href="#rfc.section.12.3">12.3.</a> <a href="#scenario-4" id="scenario-4">Multiple ISPs</a>
+</h2>
+<p id="rfc.section.12.3.p.1">This scenario considers a HNA connected to multiple ISPs.</p>
+<p id="rfc.section.12.3.p.2">Firstly, suppose the HNA has been configured with the based scenarios exposed in <a href="#sec-scenario-1" class="xref">Section 12</a>. The HNA has multiple interfaces, one for each ISP, and each of these interface is configured using DHCP. The HNA sends to each ISP its Client Public Key Option as well as a request for a Zone Template Option, a Synchronization Server Option and a Reverse Synchronization Server Option. Each ISP provides the requested DHCP options, with different values. Note that this scenario assumes, the home network has a different Registered Homenet Domain for each ISP as it is managed by the ISP. On the other hand, the HNA Client Public Key may be shared between the HNA and the multiple ISPs. The HNA builds the associate DNS(SEC) Homenet Zone, and proceeds to the various settings as described in  <a href="#sec-scenario-1" class="xref">Section 12</a>.</p>
+<p id="rfc.section.12.3.p.3">The protocol and DHCPv6 options described in this document are fully compatible with a HNA connected to multiple ISPs with multiple Registered Homenet Domains. However, the HNA should be able to handle different Registered Homenet Domains. This is an implementation issue which is outside the scope of the current document. More specifically, multiple Registered Homenet Domains leads to multiple DNS(SEC) Homenet Zones. A basic implementation may erase the DNS(SEC) Homenet Zone that exists when it receives DHCPv6 options, and rebuild everything from scratch. This will work for an initial configuration but comes with a few drawbacks. First, updates to the DNS(SEC) Homenet Zone may only push to one of the multiple Registered Homenet Domain, the latest Registered Homenet Domain that has been set, and this is most likely expected to be almost randomly chosen as it may depend on the latency on each ISP network at the boot time. As a  results, this leads to unsynchronized Registered Homenet Domains. Secondly, if the HNA handles in some ways resolution, only the latest Registered Homenet Domain set may be able to provide naming resolution in case of network disruption.</p>
+<p id="rfc.section.12.3.p.4">Secondly, suppose the HNA is connected to multiple ISP with a single Registered Homenet Domain. In this case, the one party is chosen to host the Registered Homenet Domain. This entity may be one of the ISP or a third party. Note that having multiple ISPs can be motivated for bandwidth aggregation, or connectivity fail-over. In the case of connectivity fail-over, the fail-over concerns the access network and a failure of the access network may not impact the core network where the Synchronization Server and Public Authoritative Primaries are hosted. In that sense, choosing one of the ISP even in a scenario of multiple ISPs may make sense. However, for sake of simplicity, this scenario assumes that a third party has be chosen to host the Registered Homenet Domain.  The DNS settings for each ISP is described in <a href="#scenario-2" class="xref">Section 12.1</a> and <a href="#scenario-3" class="xref">Section 12.2</a>. With the configuration described in <a href="#scenario-2" class="xref">Section 12.1</a>,  the HNA is expect to be able to handle multiple Homenet Registered Domain, as the third party redirect to one of the ISPs Servers. With the configuration described in <a href="#scenario-3" class="xref">Section 12.2</a>, DNS zone are hosted and maintained by the third party. A single DNS(SEC) Homenet Zone is built and maintained by the HNA. This latter configuration is likely to match most HNA implementations.</p>
+<p id="rfc.section.12.3.p.5">The protocol and DHCPv6 options described in this document are fully compatible with a HNA connected to multiple ISPs. To configure or not and how to configure the HNA depends on the HNA facilities.  <a href="#sec-scenario-1" class="xref">Section 12</a> and  <a href="#scenario-2" class="xref">Section 12.1</a> require the HNA to handle multiple Registered Homenet Domain, whereas <a href="#scenario-3" class="xref">Section 12.2</a> does not have such requirement.</p>
+<h1 id="rfc.references">
+<a href="#rfc.references">13.</a> References</h1>
+<h2 id="rfc.references.1">
+<a href="#rfc.references.1">13.1.</a> Normative References</h2>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC1034">[RFC1034]</b></td>
+<td class="top">
+<a>Mockapetris, P.</a>, "<a href="https://tools.ietf.org/html/rfc1034">Domain names - concepts and facilities</a>", STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC1996">[RFC1996]</b></td>
+<td class="top">
+<a>Vixie, P.</a>, "<a href="https://tools.ietf.org/html/rfc1996">A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)</a>", RFC 1996, DOI 10.17487/RFC1996, August 1996.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2136">[RFC2136]</b></td>
+<td class="top">
+<a>Vixie, P.</a>, <a>Thomson, S.</a>, <a>Rekhter, Y.</a> and <a>J. Bound</a>, "<a href="https://tools.ietf.org/html/rfc2136">Dynamic Updates in the Domain Name System (DNS UPDATE)</a>", RFC 2136, DOI 10.17487/RFC2136, April 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2181">[RFC2181]</b></td>
+<td class="top">
+<a>Elz, R.</a> and <a>R. Bush</a>, "<a href="https://tools.ietf.org/html/rfc2181">Clarifications to the DNS Specification</a>", RFC 2181, DOI 10.17487/RFC2181, July 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2845">[RFC2845]</b></td>
+<td class="top">
+<a>Vixie, P.</a>, <a>Gudmundsson, O.</a>, <a>Eastlake 3rd, D.</a> and <a>B. Wellington</a>, "<a href="https://tools.ietf.org/html/rfc2845">Secret Key Transaction Authentication for DNS (TSIG)</a>", RFC 2845, DOI 10.17487/RFC2845, May 2000.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2930">[RFC2930]</b></td>
+<td class="top">
+<a>Eastlake 3rd, D.</a>, "<a href="https://tools.ietf.org/html/rfc2930">Secret Key Establishment for DNS (TKEY RR)</a>", RFC 2930, DOI 10.17487/RFC2930, September 2000.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2931">[RFC2931]</b></td>
+<td class="top">
+<a>Eastlake 3rd, D.</a>, "<a href="https://tools.ietf.org/html/rfc2931">DNS Request and Transaction Signatures ( SIG(0)s )</a>", RFC 2931, DOI 10.17487/RFC2931, September 2000.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3007">[RFC3007]</b></td>
+<td class="top">
+<a>Wellington, B.</a>, "<a href="https://tools.ietf.org/html/rfc3007">Secure Domain Name System (DNS) Dynamic Update</a>", RFC 3007, DOI 10.17487/RFC3007, November 2000.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3315">[RFC3315]</b></td>
+<td class="top">
+<a>Droms, R.</a>, <a>Bound, J.</a>, <a>Volz, B.</a>, <a>Lemon, T.</a>, <a>Perkins, C.</a> and <a>M. Carney</a>, "<a href="https://tools.ietf.org/html/rfc3315">Dynamic Host Configuration Protocol for IPv6 (DHCPv6)</a>", RFC 3315, DOI 10.17487/RFC3315, July 2003.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4033">[RFC4033]</b></td>
+<td class="top">
+<a>Arends, R.</a>, <a>Austein, R.</a>, <a>Larson, M.</a>, <a>Massey, D.</a> and <a>S. Rose</a>, "<a href="https://tools.ietf.org/html/rfc4033">DNS Security Introduction and Requirements</a>", RFC 4033, DOI 10.17487/RFC4033, March 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4034">[RFC4034]</b></td>
+<td class="top">
+<a>Arends, R.</a>, <a>Austein, R.</a>, <a>Larson, M.</a>, <a>Massey, D.</a> and <a>S. Rose</a>, "<a href="https://tools.ietf.org/html/rfc4034">Resource Records for the DNS Security Extensions</a>", RFC 4034, DOI 10.17487/RFC4034, March 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4035">[RFC4035]</b></td>
+<td class="top">
+<a>Arends, R.</a>, <a>Austein, R.</a>, <a>Larson, M.</a>, <a>Massey, D.</a> and <a>S. Rose</a>, "<a href="https://tools.ietf.org/html/rfc4035">Protocol Modifications for the DNS Security Extensions</a>", RFC 4035, DOI 10.17487/RFC4035, March 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4301">[RFC4301]</b></td>
+<td class="top">
+<a>Kent, S.</a> and <a>K. Seo</a>, "<a href="https://tools.ietf.org/html/rfc4301">Security Architecture for the Internet Protocol</a>", RFC 4301, DOI 10.17487/RFC4301, December 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5246">[RFC5246]</b></td>
+<td class="top">
+<a>Dierks, T.</a> and <a>E. Rescorla</a>, "<a href="https://tools.ietf.org/html/rfc5246">The Transport Layer Security (TLS) Protocol Version 1.2</a>", RFC 5246, DOI 10.17487/RFC5246, August 2008.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5936">[RFC5936]</b></td>
+<td class="top">
+<a>Lewis, E.</a> and <a>A. Hoenes</a>, "<a href="https://tools.ietf.org/html/rfc5936">DNS Zone Transfer Protocol (AXFR)</a>", RFC 5936, DOI 10.17487/RFC5936, June 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6347">[RFC6347]</b></td>
+<td class="top">
+<a>Rescorla, E.</a> and <a>N. Modadugu</a>, "<a href="https://tools.ietf.org/html/rfc6347">Datagram Transport Layer Security Version 1.2</a>", RFC 6347, DOI 10.17487/RFC6347, January 2012.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6672">[RFC6672]</b></td>
+<td class="top">
+<a>Rose, S.</a> and <a>W. Wijngaards</a>, "<a href="https://tools.ietf.org/html/rfc6672">DNAME Redirection in the DNS</a>", RFC 6672, DOI 10.17487/RFC6672, June 2012.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7296">[RFC7296]</b></td>
+<td class="top">
+<a>Kaufman, C.</a>, <a>Hoffman, P.</a>, <a>Nir, Y.</a>, <a>Eronen, P.</a> and <a>T. Kivinen</a>, "<a href="https://tools.ietf.org/html/rfc7296">Internet Key Exchange Protocol Version 2 (IKEv2)</a>", STD 79, RFC 7296, DOI 10.17487/RFC7296, October 2014.</td>
+</tr>
+</tbody></table>
+<h2 id="rfc.references.2">
+<a href="#rfc.references.2">13.2.</a> Informative References</h2>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.andrews-dnsop-pd-reverse">[I-D.andrews-dnsop-pd-reverse]</b></td>
+<td class="top">
+<a>Andrews, M.</a>, "<a href="https://tools.ietf.org/html/draft-andrews-dnsop-pd-reverse-02">Automated Delegation of IP6.ARPA reverse zones with Prefix Delegation</a>", Internet-Draft draft-andrews-dnsop-pd-reverse-02, November 2013.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-dhc-sedhcpv6">[I-D.ietf-dhc-sedhcpv6]</b></td>
+<td class="top">
+<a>Li, L.</a>, <a>Jiang, S.</a>, <a>Cui, Y.</a>, <a>Jinmei, T.</a>, <a>Lemon, T.</a> and <a>D. Zhang</a>, "<a href="https://tools.ietf.org/html/draft-ietf-dhc-sedhcpv6-21">Secure DHCPv6</a>", Internet-Draft draft-ietf-dhc-sedhcpv6-21, February 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-homenet-front-end-naming-delegation">[I-D.ietf-homenet-front-end-naming-delegation]</b></td>
+<td class="top">
+<a>Migault, D.</a>, <a>Weber, R.</a>, <a>Hunter, R.</a>, <a>Griffiths, C.</a> and <a>W. Cloetens</a>, "<a href="https://tools.ietf.org/html/draft-ietf-homenet-front-end-naming-delegation-07">Outsourcing Home Network Authoritative Naming Service</a>", Internet-Draft draft-ietf-homenet-front-end-naming-delegation-07, June 2018.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.sury-dnsext-cname-dname">[I-D.sury-dnsext-cname-dname]</b></td>
+<td class="top">
+<a>Sury, O.</a>, "<a href="https://tools.ietf.org/html/draft-sury-dnsext-cname-dname-00">CNAME+DNAME Name Redirection</a>", Internet-Draft draft-sury-dnsext-cname-dname-00, April 2010.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Daniel Migault</span> 
+	  <span class="n hidden">
+		<span class="family-name">Migault</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">8275 Trans Canada Route</span>
+
+	  <span class="vcardline">
+		<span class="locality">Saint Laurent, QC</span>,  
+		<span class="region"></span>
+		<span class="code">4S 0B6</span>
+	  </span>
+	  <span class="country-name vcardline">Canada</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:daniel.migault@ericsson.com">daniel.migault@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Ralf Weber</span> 
+	  <span class="n hidden">
+		<span class="family-name">Weber</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Nominum</span>
+	<span class="adr">
+	  <span class="vcardline">2000 Seaport Blvd</span>
+
+	  <span class="vcardline">
+		<span class="locality">Redwood City</span>,  
+		<span class="region"></span>
+		<span class="code">94063</span>
+	  </span>
+	  <span class="country-name vcardline">US</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:ralf.weber@nominum.com">ralf.weber@nominum.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Tomek Mrugalski</span> 
+	  <span class="n hidden">
+		<span class="family-name">Mrugalski</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Internet Systems Consortium, Inc.</span>
+	<span class="adr">
+	  <span class="vcardline">950 Charter Street</span>
+
+	  <span class="vcardline">
+		<span class="locality">Redwood City</span>,  
+		<span class="region"></span>
+		<span class="code">94063</span>
+	  </span>
+	  <span class="country-name vcardline">US</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:tomasz.mrugalski@gmail.com">tomasz.mrugalski@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Chris Griffiths</span> 
+	  <span class="n hidden">
+		<span class="family-name">Griffiths</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:cgriffiths@gmail.com">cgriffiths@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Wouter Cloetens</span> 
+	  <span class="n hidden">
+		<span class="family-name">Cloetens</span>
+	  </span>
+	</span>
+	<span class="org vcardline">SoftAtHome<</span>
+	<span class="adr">
+	  <span class="vcardline">vaartdijk 3 701</span>
+
+	  <span class="vcardline">
+		<span class="locality">Wijgmaal</span>,  
+		<span class="region"></span>
+		<span class="code">3018</span>
+	  </span>
+	  <span class="country-name vcardline">BE</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:cgriffiths@gmail.com">cgriffiths@gmail.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
