@@ -17,6 +17,8 @@ $ make
 This requires that you have the necessary software installed.  See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md).
 
+[Some advice not found in the above instructions: if you don't have any of the references in ~/cache, xml2rfc will take many, many minutes to run. Just putting all RFC reference files in your ~/cache will make a huge difference in time xml2rfc takes to run ([zip](https://xml2rfc.tools.ietf.org/public/rfc/bibxml.zip) or [tgz](https://xml2rfc.tools.ietf.org/public/rfc/bibxml.tgz)).]
+
 
 ## Contributing
 
