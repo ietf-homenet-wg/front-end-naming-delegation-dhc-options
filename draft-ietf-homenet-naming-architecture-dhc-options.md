@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-10
+docname: draft-ietf-homenet-naming-architecture-dhc-options-11
 ipr: trust200902  
 area: Internet
 wg: Homenet
@@ -103,7 +103,6 @@ This document describes DHCPv6 options that enables the ISP to provide the neces
 More specifically, the ISP provides the Registered Homenet Domain, necessary information on the DM and the RDM so the HNA can manage and upload the Public Homenet Zone and the Reverse Public Homenet Zone as described in {{?I-D.ietf-homenet-front-end-naming-delegation}}. 
 
 The use of DHCPv6 options makes the configuration completely transparent to the end user and provides a similar level of trust as the one used to provide the IP prefix. 
-The link between the HNA and the DHCPv6 server may benefit from additional security for example by using {{?I-D.ietf-dhc-sedhcpv6}}.
 
 
 # Protocol Overview {#sec-overview}
@@ -280,6 +279,10 @@ The different parameters are defined in {{tab-st}} in {{sec-st}}.
 Future code points 4 - 8 are assigned under the IETF Review, other code points are assigned under Specification Required as per {{!RFC8126}}. 
 
 # Security Considerations" {#security-considerations}
+
+The security considerations in {{!RFC2131}} and {{!RFC8415}} are to be considered.  
+The use of DHCPv6 options provides a similar level of trust as the one used to provide the IP prefix. 
+The link between the HNA and the DHCPv6 server may benefit from additional security for example by using {{?I-D.ietf-dhc-sedhcpv6}}.
 
 # Acknowledgments
 
