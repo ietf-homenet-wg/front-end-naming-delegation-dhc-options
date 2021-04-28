@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-11
+docname: draft-ietf-homenet-naming-architecture-dhc-options-12
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -260,7 +260,7 @@ The link between the HNA and the DHCPv6 server may benefit from additional secur
 
 # Acknowledgments
 
-We would like to thank Marcin Siodelski and Bernie Volz for their comments on the design of the DHCPv6 options.
+We would like to thank Marcin Siodelski, Bernie Volz and Ted Lemon for their comments on the design of the DHCPv6 options.
 We would also like to thank Mark Andrews, Andrew Sullivan and Lorenzo Colliti for their remarks on the architecture design. The designed solution has been largely been inspired by Mark Andrews's document {{?I-D.andrews-dnsop-pd-reverse}} as well as discussions with Mark.
 We also thank Ray Hunter for its reviews, its comments and for suggesting an appropriated terminology.
 
