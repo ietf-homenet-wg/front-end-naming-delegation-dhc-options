@@ -73,12 +73,12 @@ This document shows how an ISP can provision automatically the HNA with a specif
 Most likely the DOI will be - at least partly be - managed or provided by its ISP, but other cases may envision the ISP storing some configuration so the homenet becomes resilient to HNA replacement.
 
 The ISP delegates the home network an IP prefix it owns as well as the associated reverse zone.
-The ISP is well aware of the owner of that prefix, and as such becomes a natural candidate for hosting the Homenet Reverse Zone - that is the Reverse Distribution Master (RDM) and potentially the Reverse Public Authoritative Servers.
+The ISP is well aware of the owner of that prefix, and as such becomes a natural candidate for hosting the Homenet Reverse Zone - that is the Reverse Distribution Manager (RDM) and potentially the Reverse Public Authoritative Servers.
 
 In addition, the ISP often identifies the home network with a name.
 In most cases, the name is used by the ISP for its internal network management operations and is not a name the home network owner has registered to.
 The ISP may thus leverage such infrastructure and provide the homenet a specific domain name designated as per {{?I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
-Similarly to the reverse zone, the ISP is well aware of who owns that domain name and may become a natural candidate for hosting the Homenet Zone - that is the Distribution Master (DM) and the Public Authoritative Servers.
+Similarly to the reverse zone, the ISP is well aware of who owns that domain name and may become a natural candidate for hosting the Homenet Zone - that is the Distribution Manager (DM) and the Public Authoritative Servers.
 
 This document describes DHCPv6 options that enables the ISP to provide the necessary parameters to the HNA, to proceed.
 More specifically, the ISP provides the Registered Homenet Domain, necessary information on the DM and the RDM so the HNA can manage and upload the Public Homenet Zone and the Reverse Public Homenet Zone as described in {{?I-D.ietf-homenet-front-end-naming-delegation}}.
@@ -100,7 +100,7 @@ Such scenarios do not necessarily require configuration for the end user and can
 
 The scenario considered in this section is as follows:
 
-1. The HNA is willing to outsource the Public Homenet Zone or Homenet Reverse Zone and configures its DHCP Client to include in its Option Request Option (ORO) the Registered Homenet Domain Option (OPTION_REGISTERED_DOMAIN), the Distribution Master Option (OPTION_DIST_MASTER) and the Reverse Distribution Master Option (OPTION_REVERSE_DIST_MASTER) option codes.
+1. The HNA is willing to outsource the Public Homenet Zone or Homenet Reverse Zone and configures its DHCP Client to include in its Option Request Option (ORO) the Registered Homenet Domain Option (OPTION_REGISTERED_DOMAIN), the Distribution Manager Option (OPTION_DIST_MANAGER) and the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER) option codes.
 
 2. The DHCP Server responds to the HNA with the requested DHCPv6 options based on the identified homenet.
 The DHCP Client transmits the information to the HNA.
@@ -139,27 +139,27 @@ The Registered Domain Option (OPTION_REGISTERED_DOMAIN) indicates the FQDN assoc
 * Registered Homenet Domain (variable): the FQDN registered for the homenet encoded as described in section 10 of {{!RFC8415}}.
 
 
-## Distribution Master Option {#o_dm}
+## Distribution Manager Option {#o_dm}
 
-The Distributed Master Option (OPTION_DIST_MASTER) provides the HNA to FQDN of the DM as well as the transport protocol for the transaction between the HNA and the DM.
+The Distributed Manager Option (OPTION_DIST_MANAGER) provides the HNA to FQDN of the DM as well as the transport protocol for the transaction between the HNA and the DM.
 
 ~~~
  0                   1                        2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|      OPTION_DIST_MASTER       |          option-len           |
+|      OPTION_DIST_MANAGER      |          option-len           |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |     Supported Transport       |                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               |
 |                                                               |
-/                   Distribution Master  FQDN                   /
+/                  Distribution Manager  FQDN                   /
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ~~~
-{:#fig-dm title="Distribution Master Option"}
+{:#fig-dm title="Distribution Manager Option"}
 
 
-* option-code (16 bits): OPTION_DIST_MASTER, the option code for the DM Option (TBD3).
+* option-code (16 bits): OPTION_DIST_MANAGER, the option code for the Distribution Manager Option (TBD2).
 
 * option-len (16 bits): length in octets of the option-data field as
 described in {{!RFC8415}}.
@@ -168,7 +168,7 @@ described in {{!RFC8415}}.
 Each bit represents a supported transport, and a DM MAY indicate the support of multiple modes.
 The bit for DNS over TLS {{!RFC7858}} MUST be set.
 
-* Distribution Master FQDN (variable): the FQDN of the DM encoded as described in section 10 of {{!RFC8415}}.
+* Distribution Manager FQDN (variable): the FQDN of the DM encoded as described in section 10 of {{!RFC8415}}.
 
 ### Supported Transport {#sec-st}
 
@@ -186,36 +186,36 @@ Bit | Transport Protocol | Reference
 
 * DNS over TLS: indicates the support of DNS over TLS as described in {{!RFC7858}}.
 
-## Reverse Distribution Master Server Option
+## Reverse Distribution Manager Server Option
 
-The Reverse Distribution Master Server Option (OPTION_REVERSE_DIST_MASTER) provides the HNA to FQDN of the DM as well as the transport protocol for the transaction between the HNA and the DM.
+The Reverse Distribution Manager Server Option (OPTION_REVERSE_DIST_MANAGER) provides the HNA to FQDN of the DM as well as the transport protocol for the transaction between the HNA and the DM.
 
 ~~~
  0                   1                        2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-| OPTION_REVERSE_DIST_MASTER    |          option-len           |
+| OPTION_REVERSE_DIST_MANAGER   |          option-len           |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |     Supported Transport       |                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               |
 |                                                               |
-/               Reverse Distribution Master FQDN                /
+/              Reverse Distribution Manager FQDN                /
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 ~~~
-{: #fig-rdm title="Reverse Distribution Master Option"}
+{: #fig-rdm title="Reverse Distribution Manager Option"}
 
 
 
-* option-code (16 bits): OPTION_REVERSE_DIST_MASTER, the option code for the Reverse Distribution Master Option (TBD4).
+* option-code (16 bits): OPTION_REVERSE_DIST_MANAGER, the option code for the Reverse Distribution Manager Option (TBD3).
 
 * option-len (16 bits): length in octets of the option-data field as described in {{!RFC8415}}.
 
-* Supported Transport (16 bits): defines the supported transport by the DM.
+* Supported Transport (16 bits): defines the supported transport by the RDM.
 Each bit represents a supported transport, and a DM MAY indicate the support of multiple modes. The bit for DoT MUST be set.
 
-* Reverse Distribution Master FQDN (variable): the FQDN of the RDM encoded as described in section 10 of {{!RFC8415}}.
+* Reverse Distribution Manager FQDN (variable): the FQDN of the RDM encoded as described in section 10 of {{!RFC8415}}.
 
 # DHCP Behavior {#sec-dhcp-behavior}
 
@@ -223,12 +223,12 @@ Each bit represents a supported transport, and a DM MAY indicate the support of 
 
 Sections 17.2.2 and 18.2 of {{!RFC8415}} govern server operation in regards to option assignment.
 As a convenience to the reader, we mention here that the server will send option foo only if configured with specific values for foo and if the client requested it.
-In particular, when configured the DHCP Server sends the Registered Homenet Domain Option, Distribution Master Option, the Reverse Distribution Master Option when requested by the DHCPv6 client by including necessary option codes in its ORO.
+In particular, when configured the DHCP Server sends the Registered Homenet Domain Option, Distribution Manager Option, the Reverse Distribution Manager Option when requested by the DHCPv6 client by including necessary option codes in its ORO.
 
 
 ## DHCPv6 Client Behavior
 
-The DHCPv6 client sends a ORO with the necessary option codes: Registered Homenet Domain Option, Distribution Master Option, the Reverse Distribution Master Option.
+The DHCPv6 client sends a ORO with the necessary option codes: Registered Homenet Domain Option, Distribution Manager Option, the Reverse Distribution Manager Option.
 
 Upon receiving a DHCP option described in this document in the Reply
 message, the HNA SHOULD proceed as described in {{I-D.ietf-homenet-front-end-naming-delegation}}.
@@ -244,12 +244,12 @@ IANA is requested to assign the following new DHCPv6 Option Codes in the registr
 
 ~~~
 Value Description                   Client ORO     Singleton Option
-TBD1  OPTION_REGISTERED_DOMAIN      Yes            Yes
-TBD2  OPTION_DIST_MASTER            Yes            Yes
-TBD3  OPTION_REVERSE_DIST_MASTER    Yes            Yes
+TBD1  OPTION_REGISTERED_DOMAIN       Yes            Yes
+TBD2  OPTION_DIST_MANAGER            Yes            Yes
+TBD3  OPTION_REVERSE_DIST_MANAGER    Yes            Yes
 ~~~
 
-IANA is requested to maintain a new number space of Supported Transport parameter in the Distributed Master Option (OPTION_DIST_MASTER) or the Reverse Distribution Master Server Option (OPTION_REVERSE_DIST_MASTER). The different parameters are defined in {{tab-st}} in {{sec-st}}.
+IANA is requested to maintain a new number space of Supported Transport parameter in the Distributed Manager Option (OPTION_DIST_MANAGER) or the Reverse Distribution Manager Server Option (OPTION_REVERSE_DIST_MANAGER). The different parameters are defined in {{tab-st}} in {{sec-st}}.
 Future code points are assigned under Specification Required as per {{!RFC8126}}.
 
 # Security Considerations {#security-considerations}
