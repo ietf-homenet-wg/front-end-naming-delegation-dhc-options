@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-12
+docname: draft-ietf-homenet-naming-architecture-dhc-options-13
 ipr: trust200902
 area: Internet
 wg: Homenet
