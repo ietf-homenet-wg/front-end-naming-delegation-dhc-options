@@ -88,7 +88,7 @@ The use of DHCPv6 options may make the configuration completely transparent to t
 # Procedure Overview {#sec-overview}
 
 This section illustrates how a HNA receives the necessary information via DHCPv6 options to outsource its authoritative naming service to the DOI.
-For the sake of simplicity, and similarly to {{!I-D.ietf-homenet-front-end-naming-delegation}}, this section assumes that the HNA and the home network DHCPv6 client are collocated on the  Customer Edge (CE) router {{?RFC7368}}.
+For the sake of simplicity, and similarly to {{!I-D.ietf-homenet-front-end-naming-delegation}}, this section assumes that the HNA and the home network DHCPv6 client are colocated on the  Customer Edge (CE) router {{?RFC7368}}.
 Note also that this is not mandatory and the DHCPv6 client may instruct remotely the  HNA and the DHCPv6 either with a proprietary protocol or a protocol that will be defined in the future.
 In addition, this section assumes the responsible entity for the DHCPv6 server is configured with the DM and RDM.
 This means a Registered Homenet Domain can be associated to the DHCPv6 client.
@@ -106,7 +106,7 @@ The DHCPv6 client is configured to include in its Option Request Option (ORO) th
 2. The DHCPv6 server responds to the HNA with the requested DHCPv6 options based on the identified homenet.
 The DHCPv6 client passes the information to the HNA.
 
-3. The HNA is authenticated (eventually by a self signed certificate) by the DM and the RDM. 
+3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
 The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 The DHCPv6 options provide the necessary non optional parameters described in Section 14 of {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 The HNA may complement the configurations with additional parameters via means not yet defined.
@@ -265,7 +265,7 @@ The link between the HNA and the DHCPv6 server may benefit from additional secur
 
 We would like to thank Marcin Siodelski, Bernie Volz and Ted Lemon for their comments on the design of the DHCPv6 options.
 We would also like to thank Mark Andrews, Andrew Sullivan and Lorenzo Colliti for their remarks on the architecture design. The designed solution has been largely been inspired by Mark Andrews's document {{?I-D.andrews-dnsop-pd-reverse}} as well as discussions with Mark.
-We also thank Ray Hunter for its reviews, its comments and for suggesting an appropriated terminology.
+We also thank Ray Hunter and Michael Richardson for its reviews, its comments and for suggesting an appropriated terminology.
 
 # Contributors
 
