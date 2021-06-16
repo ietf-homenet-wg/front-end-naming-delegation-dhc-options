@@ -106,7 +106,8 @@ The DHCPv6 client is configured to include in its Option Request Option (ORO) th
 2. The DHCPv6 server responds to the HNA with the requested DHCPv6 options based on the identified homenet.
 The DHCPv6 client passes the information to the HNA.
 
-3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
+<!--3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM.--> 
+3. The HNA is authenticated (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
 The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 The DHCPv6 options provide the necessary non optional parameters described in Section 14 of {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 The HNA may complement the configurations with additional parameters via means not yet defined.
