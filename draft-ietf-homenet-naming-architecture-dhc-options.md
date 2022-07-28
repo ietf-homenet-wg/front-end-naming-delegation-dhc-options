@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-14
+docname: draft-ietf-homenet-naming-architecture-dhc-options-16
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -109,9 +109,9 @@ The DHCPv6 client passes the information to the HNA.
 <!--3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM.--> 
 3. The HNA is authenticated (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
 The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
-The DHCPv6 options provide the necessary non optional parameters described in Section 14 of {{!I-D.ietf-homenet-front-end-naming-delegation}}.
+The DHCPv6 options provide the necessary non optional parameters described in Appendix B of {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 The HNA may complement the configurations with additional parameters via means not yet defined.
-Section 14 of {{!I-D.ietf-homenet-front-end-naming-delegation}} describes such parameters that MAY take some specific non default value.
+Appendix B of {{!I-D.ietf-homenet-front-end-naming-delegation}} describes such parameters that MAY take some specific non default value.
 
 # DHCPv6 Option {#sec-format}
 
@@ -187,7 +187,7 @@ Bit Position | Transport Protocol | Reference
 ~~~
 {:#tab-st title="Supported Transport" }
 
-DNS over TLS: indicates the support of DNS over TLS as described in {{!RFC7858}}.
+DNS over TLS: indicates the support of DNS over TLS as described in {{!RFC7858}} and {{!RFC9103}}.
 
 ## Reverse Distribution Manager Server Option
 
