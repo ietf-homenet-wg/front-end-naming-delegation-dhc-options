@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-16
+docname: draft-ietf-homenet-naming-architecture-dhc-options-17
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -53,7 +53,7 @@ author:
 
 --- abstract
 
-This document defines DHCPv6 options so an agnostic Homenet Naming Authority (HNA) can automatically proceed to the appropriate configuration and outsource the authoritative naming service for the home network.
+This document defines DHCPv6 options so an Homenet Naming Authority (HNA) can automatically proceed to the appropriate configuration and outsource the authoritative naming service for the home network.
 In most cases, the outsourcing mechanism is transparent for the end user.
 
 --- middle
@@ -63,11 +63,11 @@ In most cases, the outsourcing mechanism is transparent for the end user.
 
 {::boilerplate bcp14}
 
-The reader should be familiar with {{!I-D.ietf-homenet-front-end-naming-delegation}}.
+The reader should be familiar with {{?I-D.ietf-homenet-front-end-naming-delegation}}.
 
 # Introduction
 
-{{!I-D.ietf-homenet-front-end-naming-delegation}} specifies how an entity designated as the Homenet Naming Authority (HNA) outsources a Public Homenet Zone to an Outsourcing DNS Infrastructure (DOI).
+{{?I-D.ietf-homenet-front-end-naming-delegation}} specifies how an entity designated as the Homenet Naming Authority (HNA) outsources a Public Homenet Zone to an DNS Outsourcing Infrastructure (DOI).
 
 This document describes how a network can provision the HNA with a specific DOI.
 This could be particularly useful for a DOI partly managed by an ISP, or to make home networks resilient to HNA replacement. 
@@ -76,11 +76,11 @@ The ISP is thus aware of the owner of that IP prefix, and as such becomes a natu
 
 In addition, ISPs often identify the line of the home network with a name. 
 Such name is used for their internal network management operations and is not a name the home network owner has registered to.
-ISPs may leverage such infrastructure and provide the homenet with a specific domain name designated as per {{!I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
+ISPs may leverage such infrastructure and provide the homenet with a specific domain name designated as per {{?I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
 Similarly to the reverse zone, ISPs are aware of who owns that domain name and may become a natural candidate for hosting the Homenet Zone - that is the Distribution Manager (DM) and the Public Authoritative Servers.
 
 This document describes DHCPv6 options that enable an ISP to provide the necessary parameters to the HNA, to proceed.
-More specifically, the ISP provides the Registered Homenet Domain, necessary information on the DM and the RDM so the HNA can manage and upload the Public Homenet Zone and the Reverse Public Homenet Zone as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
+More specifically, the ISP provides the Registered Homenet Domain, necessary information on the DM and the RDM so the HNA can manage and upload the Public Homenet Zone and the Reverse Public Homenet Zone as described in {{?I-D.ietf-homenet-front-end-naming-delegation}}.
 
 The use of DHCPv6 options may make the configuration completely transparent to the end user and provides a similar level of trust as the one used to provide the IP prefix - when provisioned via DHCP.
 
@@ -88,7 +88,7 @@ The use of DHCPv6 options may make the configuration completely transparent to t
 # Procedure Overview {#sec-overview}
 
 This section illustrates how a HNA receives the necessary information via DHCPv6 options to outsource its authoritative naming service to the DOI.
-For the sake of simplicity, and similarly to {{!I-D.ietf-homenet-front-end-naming-delegation}}, this section assumes that the HNA and the home network DHCPv6 client are colocated on the  Customer Edge (CE) router {{?RFC7368}}.
+For the sake of simplicity, and similarly to {{?I-D.ietf-homenet-front-end-naming-delegation}}, this section assumes that the HNA and the home network DHCPv6 client are colocated on the  Customer Edge (CPE) router {{?RFC7368}}.
 Note also that this is not mandatory and the DHCPv6 client may instruct remotely the  HNA and the DHCPv6 either with a proprietary protocol or a protocol that will be defined in the future.
 In addition, this section assumes the responsible entity for the DHCPv6 server is configured with the DM and RDM.
 This means a Registered Homenet Domain can be associated to the DHCPv6 client.
@@ -106,12 +106,12 @@ The DHCPv6 client is configured to include in its Option Request Option (ORO) th
 2. The DHCPv6 server responds to the HNA with the requested DHCPv6 options based on the identified homenet.
 The DHCPv6 client passes the information to the HNA.
 
-<!--3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM.--> 
-3. The HNA is authenticated (see Section 4.6 of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
-The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
-The DHCPv6 options provide the necessary non optional parameters described in Appendix B of {{!I-D.ietf-homenet-front-end-naming-delegation}}.
+<!--3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{?I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM.--> 
+3. The HNA is authenticated (see Section 4.6 of {{?I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
+The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{?I-D.ietf-homenet-front-end-naming-delegation}}.
+The DHCPv6 options provide the necessary non optional parameters described in Appendix B of {{?I-D.ietf-homenet-front-end-naming-delegation}}.
 The HNA may complement the configurations with additional parameters via means not yet defined.
-Appendix B of {{!I-D.ietf-homenet-front-end-naming-delegation}} describes such parameters that MAY take some specific non default value.
+Appendix B of {{?I-D.ietf-homenet-front-end-naming-delegation}} describes such parameters that MAY take some specific non default value.
 
 # DHCPv6 Option {#sec-format}
 
@@ -145,6 +145,10 @@ The Registered Domain Option (OPTION_REGISTERED_DOMAIN) indicates the FQDN assoc
 ## Distribution Manager Option {#o_dm}
 
 The Distributed Manager Option (OPTION_DIST_MANAGER) provides the HNA with the FQDN of the DM as well as the transport protocols for the communication between the HNA and the DM.
+As opposed to IP addresses, the FQDN requires a DNS resolution before establishing the communication between the HNA and the DM. 
+However, the use of a FQDN provides multiple advantages over IP addresses.
+Firstly, it makes the DHCPv6 Option easier to parse and smaller - especially when IPv4 and IPv6  addresses are expected to be provided. 
+Then the FQDN can reasonably be seen as a more stable identifier as well as a pointer to additional information than the IP addresses may be useful to in the future to establish the communication between the HNA and the DM.   
 
 ~~~
  0                   1                        2                   3
@@ -172,22 +176,8 @@ The bit for DNS over TLS {{!RFC7858}} MUST be set.
 
 * Distribution Manager FQDN (variable): the FQDN of the DM encoded as described in Section 10 of {{!RFC8415}}.
 
-### Supported Transport {#sec-st}
 
-The Supported Transport field of the DHCPv6 option indicates the supported transport protocols.
-Each bit represents a specific transport mechanism. 
-A bit sets to 1 indicates the associated transport protocol is supported.
-The corresponding bits are assigned as described in {{tab-st}} and {{sec-iana}}.
 
-~~~
-Bit Position | Transport Protocol | Reference
--------------+--------------------+-----------
-      0      | DNS over TLS       | This-RFC
-     1-15    | unallocated        |
-~~~
-{:#tab-st title="Supported Transport" }
-
-DNS over TLS: indicates the support of DNS over TLS as described in {{!RFC7858}} and {{!RFC9103}}.
 
 ## Reverse Distribution Manager Server Option
 
@@ -221,6 +211,25 @@ The bit for DNS over TLS {{!RFC7858}} MUST be set.
 
 * Reverse Distribution Manager FQDN (variable): the FQDN of the RDM encoded as described in section 10 of {{!RFC8415}}.
 
+
+## Supported Transport {#sec-st}
+
+The Supported Transport field of the DHCPv6 option indicates the supported transport protocols.
+Each bit represents a specific transport mechanism. 
+A bit sets to 1 indicates the associated transport protocol is supported.
+The corresponding bits are assigned as described in {{tab-st}} and {{sec-iana}}.
+
+~~~
+Bit Position | Transport Protocol Description |  Mnemonic | Reference
+-------------+--------------------------------+-----------+-----------
+      0      | DNS over TLS                   | DoT       | This-RFC
+     1-15    | unallocated                    |  -        |  -
+~~~
+{:#tab-st title="Supported Transport" }
+
+DNS over TLS: indicates the support of DNS over TLS as described in {{?RFC7858}} and {{?RFC9103}}.
+
+
 # DHCPv6 Behavior {#sec-dhcp-behavior}
 
 ## DHCPv6 Server Behavior
@@ -244,17 +253,44 @@ There are no additional requirements for the DHCPv6 Relay agents.
 
 # IANA Considerations {#sec-iana}
 
+
+## DHCPv6 Option Codes 
+
 IANA is requested to assign the following new DHCPv6 Option Codes in the registry maintained in: https://www.iana.org/assignments/dhcpv6-parameters/dhcpv6-parameters.xhtml#dhcpv6-parameters-2.
 
 ~~~
-Value Description                   Client ORO     Singleton Option
-TBD1  OPTION_REGISTERED_DOMAIN       Yes            No
-TBD2  OPTION_DIST_MANAGER            Yes            Yes
-TBD3  OPTION_REVERSE_DIST_MANAGER    Yes            Yes
+Value Description                   Client ORO     Singleton Option  Reference
+TBD1  OPTION_REGISTERED_DOMAIN       Yes            No               [This-RFC] Section 4.1
+TBD2  OPTION_DIST_MANAGER            Yes            Yes              [This-RFC] Section 4.2
+TBD3  OPTION_REVERSE_DIST_MANAGER    Yes            Yes              [This-RFC] Section 4.3
 ~~~
 
-IANA is requested to maintain a new number space of Supported Transport parameter in the Distributed Manager Option (OPTION_DIST_MANAGER) or the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER). The different parameters are defined in {{tab-st}} in {{sec-st}}.
-Future code points are assigned under Specification Required as per {{!RFC8126}}.
+## Supported Transport parameter 
+
+IANA is requested to maintain a new registry of Supported Transport parameter in the Distributed Manager Option (OPTION_DIST_MANAGER) or the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER). The different parameters are defined in {{tab-st}} in {{sec-st}}.
+
+The Name of the registry is: Supported Transport parameter
+
+The registry description is:  The Supported Transport field of the DHCPv6 option is a tow byte field that indicates the supported transport protocols. 
+Each bit represents a specific transport mechanism.
+
+The parent grouping is Dynamic Host Configuration Protocol for IPv6 (DHCPv6) at https://www.iana.org/assignments/dhcpv6-parameters/dhcpv6-parameters.xhtml#dhcpv6-parameters-2.
+
+New entry MUST specify the bit position, the Transport Protocol Description a Mnemonic and a Reference as defined in {{tab-iana}}.
+
+The initial registry is as specified in {{tab-iana}}.
+
+Changes of the  format or policies of the registry is left to the IETF via the IESG.
+
+Future code points are assigned under RFC Required as per {{!RFC8126}}. The expert is expected to be familiar with DHCP.
+
+~~~
+Bit Position | Transport Protocol Description |  Mnemonic | Reference
+-------------+--------------------------------+-----------+-----------
+      0      | DNS over TLS                   | DoT       | This-RFC
+     1-15    | unallocated                    |  -        |  -
+~~~
+{:#tab-iana title="Supported Transport" }
 
 # Security Considerations {#security-considerations}
 
@@ -284,7 +320,7 @@ This section is not normative and limits the description of a limited scope of s
 
 The base scenario is the one described in {{sec-overview}} in which an ISP manages the DHCPv6 server, the DM and RDM.
 
-The end user subscribes to the ISP (foo), and at subscription time registers for example.foo as its Registered Homenet Domain example.foo.
+The end user subscribes to the ISP (foo), and at subscription time registers for foo.example as its Registered Homenet Domain foo.example.
 
 In this scenario, the DHCPv6 server, DM and RDM are managed by the ISP so the DHCPv6 server and as such can provide authentication credentials of the HNA to enable secure authenticated transaction with the DM and the Reverse DM.
 
@@ -294,14 +330,11 @@ The drawbacks are that the end user uses a Registered Homenet Domain managed by 
 ## Third Party Registered Homenet Domain {#scenario-2}
 
 This section considers the case when the end user wants its home network to use example.com not managed by her ISP (foo) as a Registered Homenet Domain.
-This section still consider the ISP manages the home network and still provides example.foo as a Registered Homenet Domain.
+This section still considers the ISP manages the home network and still provides foo.example as a Registered Homenet Domain.
 
-When the end user buys the domain name example.com, it may request to redirect the name example.com to example.foo using static redirection with CNAME {{?RFC2181}}, {{?RFC1034}}, DNAME {{?RFC6672}} or CNAME+DNAME {{?I-D.sury-dnsext-cname-dname}}.
-
-This configuration is performed once when the domain name example.com is registered.
+When the end user buys the domain name example.com, it may request to redirect the name example.com to foo.example using static redirection with CNAME {{?RFC2181}}, {{?RFC1034}}, DNAME {{?RFC6672}} or CNAME+DNAME {{?I-D.sury-dnsext-cname-dname}}.
 The only information the end user needs to know is the domain name assigned by the ISP.
-Once this configuration is done no additional configuration is needed anymore.
-More specifically, the HNA may be changed, the zone can be updated as in {{sec-scenario-1}} without any additional configuration from the end user.
+Once the redirection has been configured, the HNA may be changed, the zone can be updated as in {{sec-scenario-1}} without any additional configuration from the end user.
 
 The main advantage of this scenario is that the end user benefits from the Zero Configuration of the Base Scenario {{sec-scenario-1}}.
 Then, the end user is able to register for its home network an unlimited number of domain names provided by an unlimited number of different third party providers.
@@ -320,7 +353,7 @@ Outsourcing to a third party DM can be performed in the following ways:
 
 1. Updating the DHCPv6 server Information. One can imagine a GUI interface that enables the end user to modify its profile parameters. Again, this configuration update is done once-for-ever.
 
-2. Upload the configuration of the DM to the HNA. In some cases, the provider of the CE router hosting the HNA may be the registrar and provide the CE router already configured. In other cases, the CE router may request the end user to log into the registrar to validate the ownership of the Registered Homenet Domain and agree on the necessary credentials to secure the communication between the HNA and the DM. As described in {{!I-D.ietf-homenet-front-end-naming-delegation}}, such settings could be performed in an almost automatic way as to limit the necessary interactions with the end user.
+2. Upload the configuration of the DM to the HNA. In some cases, the provider of the CPE router hosting the HNA may be the registrar and provide the CE router already configured. In other cases, the CE router may request the end user to log into the registrar to validate the ownership of the Registered Homenet Domain and agree on the necessary credentials to secure the communication between the HNA and the DM. As described in {{?I-D.ietf-homenet-front-end-naming-delegation}}, such settings could be performed in an almost automatic way as to limit the necessary interactions with the end user.
 
 ## Multiple ISPs {#scenario-4}
 
