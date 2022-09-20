@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-17
+docname: draft-ietf-homenet-naming-architecture-dhc-options-18
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -101,7 +101,7 @@ Such scenarios do not necessarily require configuration for the end user and can
 The scenario considered in this section is as follows:
 
 1. The HNA is willing to outsource the Public Homenet Zone or Homenet Reverse Zone. 
-The DHCPv6 client is configured to include in its Option Request Option (ORO) the Registered Homenet Domain Option (OPTION_REGISTERED_DOMAIN), the Distribution Manager Option (OPTION_DIST_MANAGER) and the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER) option codes.
+The DHCPv6 client is configured to include in its Option Request Option (ORO) the Registered Homenet Domain Option (OPTION_REGISTERED_DOMAIN), the Forward Distribution Manager Option (OPTION_FORWARD_DIST_MANAGER) and the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER) option codes.
 
 2. The DHCPv6 server responds to the HNA with the requested DHCPv6 options based on the identified homenet.
 The DHCPv6 client passes the information to the HNA.
@@ -142,9 +142,9 @@ The Registered Domain Option (OPTION_REGISTERED_DOMAIN) indicates the FQDN assoc
 * Registered Homenet Domain (variable): the FQDN registered for the homenet encoded as described in Section 10 of {{!RFC8415}}.
 
 
-## Distribution Manager Option {#o_dm}
+## Forward Distribution Manager Option {#o_dm}
 
-The Distributed Manager Option (OPTION_DIST_MANAGER) provides the HNA with the FQDN of the DM as well as the transport protocols for the communication between the HNA and the DM.
+The Forward Distributed Manager Option (OPTION_FORWARD_DIST_MANAGER) provides the HNA with the FQDN of the DM as well as the transport protocols for the communication between the HNA and the DM.
 As opposed to IP addresses, the FQDN requires a DNS resolution before establishing the communication between the HNA and the DM. 
 However, the use of a FQDN provides multiple advantages over IP addresses.
 Firstly, it makes the DHCPv6 Option easier to parse and smaller - especially when IPv4 and IPv6  addresses are expected to be provided. 
@@ -154,7 +154,7 @@ Then the FQDN can reasonably be seen as a more stable identifier as well as a po
  0                   1                        2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|      OPTION_DIST_MANAGER      |          option-len           |
+|  OPTION_FORWARD_DIST_MANAGER  |          option-len           |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |     Supported Transport       |                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               |
@@ -163,10 +163,10 @@ Then the FQDN can reasonably be seen as a more stable identifier as well as a po
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ~~~
-{:#fig-dm title="Distribution Manager Option"}
+{:#fig-dm title="Forward Distribution Manager Option"}
 
 
-* option-code (16 bits): OPTION_DIST_MANAGER, the option code for the Distribution Manager Option (TBD2).
+* option-code (16 bits): OPTION_FORWARD_DIST_MANAGER, the option code for the Forward Distribution Manager Option (TBD2).
 
 * option-len (16 bits): length in octets of the enclosed data as described in {{!RFC8415}}.
 
@@ -176,7 +176,9 @@ The bit for DNS over TLS {{!RFC7858}} MUST be set.
 
 * Distribution Manager FQDN (variable): the FQDN of the DM encoded as described in Section 10 of {{!RFC8415}}.
 
-
+It is worth noticing that the Supported Transport field does not enable to specify a port and the used port is defined by standard. 
+In the case of DNS over TLS {{!RFC7858}}, the port is defined by {{!RFC7858}} to be 853. 
+The need for such flexibility has been balanced with the difficulty of handling a list of tuples ( transport, port ) as well as the possibility to use a dedicated IP address for the DM. 
 
 
 ## Reverse Distribution Manager Server Option
@@ -261,13 +263,13 @@ IANA is requested to assign the following new DHCPv6 Option Codes in the registr
 ~~~
 Value Description                   Client ORO     Singleton Option  Reference
 TBD1  OPTION_REGISTERED_DOMAIN       Yes            No               [This-RFC] Section 4.1
-TBD2  OPTION_DIST_MANAGER            Yes            Yes              [This-RFC] Section 4.2
+TBD2  OPTION_FORWARD_DIST_MANAGER    Yes            Yes              [This-RFC] Section 4.2
 TBD3  OPTION_REVERSE_DIST_MANAGER    Yes            Yes              [This-RFC] Section 4.3
 ~~~
 
 ## Supported Transport parameter 
 
-IANA is requested to maintain a new registry of Supported Transport parameter in the Distributed Manager Option (OPTION_DIST_MANAGER) or the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER). The different parameters are defined in {{tab-st}} in {{sec-st}}.
+IANA is requested to maintain a new registry of Supported Transport parameter in the Distributed Manager Option (OPTION_FORWARD_DIST_MANAGER) or the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER). The different parameters are defined in {{tab-st}} in {{sec-st}}.
 
 The Name of the registry is: Supported Transport parameter
 
@@ -281,8 +283,6 @@ New entry MUST specify the bit position, the Transport Protocol Description a Mn
 The initial registry is as specified in {{tab-iana}}.
 
 Changes of the  format or policies of the registry is left to the IETF via the IESG.
-
-Future code points are assigned under RFC Required as per {{!RFC8126}}. The expert is expected to be familiar with DHCP.
 
 ~~~
 Bit Position | Transport Protocol Description |  Mnemonic | Reference
