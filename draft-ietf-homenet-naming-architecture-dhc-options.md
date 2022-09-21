@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-18
+docname: draft-ietf-homenet-naming-architecture-dhc-options-20
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -284,6 +284,9 @@ The initial registry is as specified in {{tab-iana}}.
 
 Changes of the  format or policies of the registry is left to the IETF via the IESG.
 
+Future code points are assigned under RFC Required as per {{!RFC8126}}.
+
+
 ~~~
 Bit Position | Transport Protocol Description |  Mnemonic | Reference
 -------------+--------------------------------+-----------+-----------
@@ -296,7 +299,6 @@ Bit Position | Transport Protocol Description |  Mnemonic | Reference
 
 The security considerations in {{!RFC8415}} are to be considered.
 The use of DHCPv6 options provides a similar level of trust as the one used to provide the IP prefix.
-The link between the HNA and the DHCPv6 server may benefit from additional security for example by using {{?I-D.ietf-dhc-sedhcpv6}}.
 
 # Acknowledgments
 
