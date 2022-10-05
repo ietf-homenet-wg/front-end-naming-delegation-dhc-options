@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-20
+docname: draft-ietf-homenet-naming-architecture-dhc-options-21
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -115,7 +115,7 @@ Appendix B of {{?I-D.ietf-homenet-front-end-naming-delegation}} describes such p
 
 # DHCPv6 Option {#sec-format}
 
-This section details the payload of the DHCPv6 options.
+This section details the payload of the DHCPv6 options following the guidelines of {{?RFC7227}}.
 
 ## Registered Homenet Domain Option {#o_rd}
 
@@ -273,7 +273,7 @@ IANA is requested to maintain a new registry of Supported Transport parameter in
 
 The Name of the registry is: Supported Transport parameter
 
-The registry description is:  The Supported Transport field of the DHCPv6 option is a tow byte field that indicates the supported transport protocols. 
+The registry description is:  The Supported Transport field of the DHCPv6 option is a two octet field that indicates the supported transport protocols. 
 Each bit represents a specific transport mechanism.
 
 The parent grouping is Dynamic Host Configuration Protocol for IPv6 (DHCPv6) at https://www.iana.org/assignments/dhcpv6-parameters/dhcpv6-parameters.xhtml#dhcpv6-parameters-2.
@@ -298,7 +298,7 @@ Bit Position | Transport Protocol Description |  Mnemonic | Reference
 # Security Considerations {#security-considerations}
 
 The security considerations in {{!RFC8415}} are to be considered.
-The use of DHCPv6 options provides a similar level of trust as the one used to provide the IP prefix.
+The trust associated with the information carried by the DHCPv6 Options described in this document is similar to the one associated with the IP prefix - when configured via DHCPv6.
 
 # Acknowledgments
 
