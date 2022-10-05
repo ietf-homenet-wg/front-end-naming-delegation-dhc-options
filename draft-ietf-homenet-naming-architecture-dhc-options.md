@@ -315,8 +315,8 @@ The co-authors would like to thank Chris Griffiths and Wouter Cloetens that prov
 
 # Scenarios and impact on the End User {#sec-scenario}
 
-This section details various scenarios and discuss their impact on the end user.
-This section is not normative and limits the description of a limited scope of scenarios that are assumed to be representative. Many other scenarios may be derived from these.
+This appendix details various scenarios and discuss their impact on the end user.
+This appendix is not normative and limits the description of a limited scope of scenarios that are assumed to be representative. Many other scenarios may be derived from these.
 
 # Base Scenario {#sec-scenario-1}
 
@@ -331,8 +331,8 @@ The drawbacks are that the end user uses a Registered Homenet Domain managed by 
 
 ## Third Party Registered Homenet Domain {#scenario-2}
 
-This section considers the case when the end user wants its home network to use example.com not managed by her ISP (foo) as a Registered Homenet Domain.
-This section still considers the ISP manages the home network and still provides foo.example as a Registered Homenet Domain.
+This appendix considers the case when the end user wants its home network to use example.com not managed by her ISP (foo) as a Registered Homenet Domain.
+This appendix still considers the ISP manages the home network and still provides foo.example as a Registered Homenet Domain.
 
 When the end user buys the domain name example.com, it may request to redirect the name example.com to foo.example using static redirection with CNAME {{?RFC2181}}, {{?RFC1034}}, DNAME {{?RFC6672}} or CNAME+DNAME {{?I-D.sury-dnsext-cname-dname}}.
 The only information the end user needs to know is the domain name assigned by the ISP.
@@ -348,7 +348,7 @@ Note that the only case this may be inconvenient is when the DNS servers provide
 
 This scenario considers that the end user uses example.com as a Registered Homenet Domain, and does not want to rely on the authoritative servers provided by the ISP.
 
-In this section we limit the outsourcing to the DM and Public Authoritative Server(s) to a third party.
+In this appendix we limit the outsourcing to the DM and Public Authoritative Server(s) to a third party.
 The Reverse Public Authoritative Server(s) and the RDM remain managed by the ISP as the IP prefix is managed by the ISP.
 
 Outsourcing to a third party DM can be performed in the following ways:
