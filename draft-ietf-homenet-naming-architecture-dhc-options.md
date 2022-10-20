@@ -53,7 +53,7 @@ author:
 
 --- abstract
 
-This document defines DHCPv6 options so an Homenet Naming Authority (HNA) can automatically proceed to the appropriate configuration and outsource the authoritative naming service for the home network.
+This document defines DHCPv6 options so a Homenet Naming Authority (HNA) can automatically proceed to the appropriate configuration and outsource the authoritative naming service for the home network.
 In most cases, the outsourcing mechanism is transparent for the end user.
 
 --- middle
@@ -76,7 +76,7 @@ The ISP is thus aware of the owner of that IP prefix, and as such becomes a natu
 
 In addition, ISPs often identify the line of the home network with a name. 
 Such name is used for their internal network management operations and is not a name the home network owner has registered to.
-ISPs may leverage such infrastructure and provide the homenet with a specific domain name designated as per {{!I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
+ISPs may leverage such infrastructure and provide the home network with a specific domain name designated as per {{!I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
 Similarly to the reverse zone, ISPs are aware of who owns that domain name and may become a natural candidate for hosting the Homenet Zone - that is the Distribution Manager (DM) and the Public Authoritative Servers.
 
 This document describes DHCPv6 options that enable an ISP to provide the necessary parameters to the HNA, to proceed.
@@ -236,7 +236,7 @@ DNS over TLS: indicates the support of DNS over TLS as described in {{?RFC7858}}
 
 ## DHCPv6 Server Behavior
 
-Sections 17.2.2 and 18.2 of {{!RFC8415}} govern server operation in regards to option assignment.
+Sections 17.2.2 and 18.2 of {{!RFC8415}} govern server operation regarding option assignment.
 As a convenience to the reader, we mention here that the server will send option foo only if configured with specific values for foo and if the client requested it.
 In particular, when configured the DHCPv6 server sends the Registered Homenet Domain Option, Distribution Manager Option, the Reverse Distribution Manager Option when requested by the DHCPv6 client by including necessary option codes in its ORO.
 
@@ -378,7 +378,7 @@ In that sense, choosing one of the ISP even in a scenario of multiple ISPs may m
 However, for sake of simplicity, this scenario assumes that a third party has been chosen to host the Registered Homenet Domain.
 Configuration is performed as described in {{scenario-2}} and {{scenario-3}}.
 
-With the configuration described in {{scenario-2}},  the HNA is expect to be able to handle multiple Homenet Registered Domain, as the third party redirect to one of the ISPs servers.
+With the configuration described in {{scenario-2}},  the HNA is expected to be able to handle multiple Homenet Registered Domain, as the third party redirect to one of the ISPs servers.
 With the configuration described in {{scenario-3}}, DNS zone are hosted and maintained by the third party.
 A single DNS(SEC) Homenet Zone is built and maintained by the HNA.
 This latter configuration is likely to match most HNA implementations.
