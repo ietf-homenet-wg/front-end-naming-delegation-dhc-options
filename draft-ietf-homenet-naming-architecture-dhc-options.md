@@ -212,6 +212,9 @@ The bit for DNS over TLS {{!RFC7858}} MUST be set.
 
 * Reverse Distribution Manager FQDN (variable): the FQDN of the RDM encoded as described in section 10 of {{!RFC8415}}.
 
+It is worth noticing that the Supported Transport field does not enable to specify a port and the used port is defined by a standard. 
+In the case of DNS over TLS {{!RFC7858}}, the port is defined by {{!RFC7858}} to be 853. 
+The need for such flexibility has been balanced with the difficulty of handling a list of tuples ( transport, port ) as well as the possibility to use a dedicated IP address for the DM. 
 
 ## Supported Transport {#sec-st}
 
