@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-21
+docname: draft-ietf-homenet-naming-architecture-dhc-options-22
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -63,11 +63,11 @@ In most cases, the outsourcing mechanism is transparent for the end user.
 
 {::boilerplate bcp14}
 
-The reader should be familiar with {{?I-D.ietf-homenet-front-end-naming-delegation}}.
+The reader should be familiar with {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 
 # Introduction
 
-{{?I-D.ietf-homenet-front-end-naming-delegation}} specifies how an entity designated as the Homenet Naming Authority (HNA) outsources a Public Homenet Zone to an DNS Outsourcing Infrastructure (DOI).
+{{!I-D.ietf-homenet-front-end-naming-delegation}} specifies how an entity designated as the Homenet Naming Authority (HNA) outsources a Public Homenet Zone to an DNS Outsourcing Infrastructure (DOI).
 
 This document describes how a network can provision the HNA with a specific DOI.
 This could be particularly useful for a DOI partly managed by an ISP, or to make home networks resilient to HNA replacement. 
@@ -76,11 +76,11 @@ The ISP is thus aware of the owner of that IP prefix, and as such becomes a natu
 
 In addition, ISPs often identify the line of the home network with a name. 
 Such name is used for their internal network management operations and is not a name the home network owner has registered to.
-ISPs may leverage such infrastructure and provide the homenet with a specific domain name designated as per {{?I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
+ISPs may leverage such infrastructure and provide the homenet with a specific domain name designated as per {{!I-D.ietf-homenet-front-end-naming-delegation}} a Homenet Registered Domain.
 Similarly to the reverse zone, ISPs are aware of who owns that domain name and may become a natural candidate for hosting the Homenet Zone - that is the Distribution Manager (DM) and the Public Authoritative Servers.
 
 This document describes DHCPv6 options that enable an ISP to provide the necessary parameters to the HNA, to proceed.
-More specifically, the ISP provides the Registered Homenet Domain, necessary information on the DM and the RDM so the HNA can manage and upload the Public Homenet Zone and the Reverse Public Homenet Zone as described in {{?I-D.ietf-homenet-front-end-naming-delegation}}.
+More specifically, the ISP provides the Registered Homenet Domain, necessary information on the DM and the RDM so the HNA can manage and upload the Public Homenet Zone and the Reverse Public Homenet Zone as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 
 The use of DHCPv6 options may make the configuration completely transparent to the end user and provides a similar level of trust as the one used to provide the IP prefix - when provisioned via DHCP.
 
@@ -88,10 +88,10 @@ The use of DHCPv6 options may make the configuration completely transparent to t
 # Procedure Overview {#sec-overview}
 
 This section illustrates how a HNA receives the necessary information via DHCPv6 options to outsource its authoritative naming service to the DOI.
-For the sake of simplicity, and similarly to {{?I-D.ietf-homenet-front-end-naming-delegation}}, this section assumes that the HNA and the home network DHCPv6 client are colocated on the  Customer Edge (CPE) router {{?RFC7368}}.
-Note also that this is not mandatory and the DHCPv6 client may instruct remotely the  HNA and the DHCPv6 either with a proprietary protocol or a protocol that will be defined in the future.
-In addition, this section assumes the responsible entity for the DHCPv6 server is configured with the DM and RDM.
-This means a Registered Homenet Domain can be associated to the DHCPv6 client.
+For the sake of simplicity, and similarly to {{!I-D.ietf-homenet-front-end-naming-delegation}}, this section assumes that the HNA and the home network DHCPv6 client are colocated on the  Customer Edge (CPE) router {{?RFC7368}}.
+Note also that this is not mandatory and the DHCPv6 client may instruct remotely the  HNA with a protocol that will be standardized in the future.
+In addition, this section assumes the responsible entity for the DHCPv6 server is provisioned with the DM and RDM information - associated with the requested Registered Homenet Domain .
+This means a Registered Homenet Domain can be associated with the DHCPv6 client.
 
 This scenario is believed to be the most popular scenario. 
 This document does not ignore scenarios where the DHCPv6 server does not have privileged relations with the DM or RDM.
@@ -103,15 +103,14 @@ The scenario considered in this section is as follows:
 1. The HNA is willing to outsource the Public Homenet Zone or Homenet Reverse Zone. 
 The DHCPv6 client is configured to include in its Option Request Option (ORO) the Registered Homenet Domain Option (OPTION_REGISTERED_DOMAIN), the Forward Distribution Manager Option (OPTION_FORWARD_DIST_MANAGER) and the Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER) option codes.
 
-2. The DHCPv6 server responds to the HNA with the requested DHCPv6 options based on the identified homenet.
+2. The DHCPv6 server responds to the DHCPv6 client with the requested DHCPv6 options based on the identified homenet.
 The DHCPv6 client passes the information to the HNA.
 
-<!--3. The HNA is authenticated (eventually by a self signed certificate (see Section 4.6 of {{?I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM.--> 
-3. The HNA is authenticated (see Section 4.6 of {{?I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
-The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{?I-D.ietf-homenet-front-end-naming-delegation}}.
-The DHCPv6 options provide the necessary non optional parameters described in Appendix B of {{?I-D.ietf-homenet-front-end-naming-delegation}}.
+3. The HNA is authenticated (see Section "Securing the Control Channel" of {{!I-D.ietf-homenet-front-end-naming-delegation}}) by the DM and the RDM. 
+The HNA builds the Homenet Zone (or the Homenet Reverse Zone) and proceed as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
+The DHCPv6 options provide the necessary non optional parameters described in Appendix B of {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 The HNA may complement the configurations with additional parameters via means not yet defined.
-Appendix B of {{?I-D.ietf-homenet-front-end-naming-delegation}} describes such parameters that MAY take some specific non default value.
+Appendix B of {{!I-D.ietf-homenet-front-end-naming-delegation}} describes such parameters that may take some specific non default value.
 
 # DHCPv6 Option {#sec-format}
 
@@ -119,7 +118,7 @@ This section details the payload of the DHCPv6 options following the guidelines 
 
 ## Registered Homenet Domain Option {#o_rd}
 
-The Registered Domain Option (OPTION_REGISTERED_DOMAIN) indicates the FQDN associated to the home network.
+The Registered Domain Option (OPTION_REGISTERED_DOMAIN) indicates the FQDN associated with the home network.
 
 
 ~~~
@@ -148,7 +147,7 @@ The Forward Distributed Manager Option (OPTION_FORWARD_DIST_MANAGER) provides th
 As opposed to IP addresses, the FQDN requires a DNS resolution before establishing the communication between the HNA and the DM. 
 However, the use of a FQDN provides multiple advantages over IP addresses.
 Firstly, it makes the DHCPv6 Option easier to parse and smaller - especially when IPv4 and IPv6  addresses are expected to be provided. 
-Then the FQDN can reasonably be seen as a more stable identifier as well as a pointer to additional information than the IP addresses may be useful to in the future to establish the communication between the HNA and the DM.   
+Then the FQDN can reasonably be seen as a more stable identifier than IP addresses, as well as a pointer to additional information that may be useful, in the future, to establish the communication between the HNA and the DM.
 
 ~~~
  0                   1                        2                   3
@@ -172,11 +171,11 @@ Then the FQDN can reasonably be seen as a more stable identifier as well as a po
 
 * Supported Transport (16 bits): defines the supported transport by the DM (see {{sec-st}}).
 Each bit represents a supported transport, and a DM MAY indicate the support of multiple modes.
-The bit for DNS over TLS {{!RFC7858}} MUST be set.
+The left most bit for DNS over TLS {{!RFC7858}} MUST be set.
 
 * Distribution Manager FQDN (variable): the FQDN of the DM encoded as described in Section 10 of {{!RFC8415}}.
 
-It is worth noticing that the Supported Transport field does not enable to specify a port and the used port is defined by standard. 
+It is worth noticing that the Supported Transport field does not enable to specify a port and the used port is defined by a standard. 
 In the case of DNS over TLS {{!RFC7858}}, the port is defined by {{!RFC7858}} to be 853. 
 The need for such flexibility has been balanced with the difficulty of handling a list of tuples ( transport, port ) as well as the possibility to use a dedicated IP address for the DM. 
 
@@ -222,10 +221,11 @@ A bit sets to 1 indicates the associated transport protocol is supported.
 The corresponding bits are assigned as described in {{tab-st}} and {{sec-iana}}.
 
 ~~~
-Bit Position | Transport Protocol Description |  Mnemonic | Reference
--------------+--------------------------------+-----------+-----------
-      0      | DNS over TLS                   | DoT       | This-RFC
-     1-15    | unallocated                    |  -        |  -
+Bit Position | Transport Protocol |  Mnemonic | Reference
+left to right| Description        |           |
+-------------+--------------------+-----------+-----------
+      0      | DNS over TLS       | DoT       | This-RFC
+     1-15    | unallocated        |  -        |  -
 ~~~
 {:#tab-st title="Supported Transport" }
 
@@ -288,10 +288,11 @@ Future code points are assigned under RFC Required as per {{!RFC8126}}.
 
 
 ~~~
-Bit Position | Transport Protocol Description |  Mnemonic | Reference
--------------+--------------------------------+-----------+-----------
-      0      | DNS over TLS                   | DoT       | This-RFC
-     1-15    | unallocated                    |  -        |  -
+Bit Position | Transport Protocol |  Mnemonic | Reference
+left to right| Description        |           |  
+-------------+--------------------+-----------+-----------
+      0      | DNS over TLS       | DoT       | This-RFC
+     1-15    | unallocated        |  -        |  -
 ~~~
 {:#tab-iana title="Supported Transport" }
 
@@ -318,7 +319,7 @@ The co-authors would like to thank Chris Griffiths and Wouter Cloetens that prov
 This appendix details various scenarios and discuss their impact on the end user.
 This appendix is not normative and limits the description of a limited scope of scenarios that are assumed to be representative. Many other scenarios may be derived from these.
 
-# Base Scenario {#sec-scenario-1}
+## Base Scenario {#sec-scenario-1}
 
 The base scenario is the one described in {{sec-overview}} in which an ISP manages the DHCPv6 server, the DM and RDM.
 
@@ -355,7 +356,7 @@ Outsourcing to a third party DM can be performed in the following ways:
 
 1. Updating the DHCPv6 server Information. One can imagine a GUI interface that enables the end user to modify its profile parameters. Again, this configuration update is done once-for-ever.
 
-2. Upload the configuration of the DM to the HNA. In some cases, the provider of the CPE router hosting the HNA may be the registrar and provide the CE router already configured. In other cases, the CE router may request the end user to log into the registrar to validate the ownership of the Registered Homenet Domain and agree on the necessary credentials to secure the communication between the HNA and the DM. As described in {{?I-D.ietf-homenet-front-end-naming-delegation}}, such settings could be performed in an almost automatic way as to limit the necessary interactions with the end user.
+2. Upload the configuration of the DM to the HNA. In some cases, the provider of the CPE router hosting the HNA may be the registrar and provide the CPE router already configured. In other cases, the CPE router may request the end user to log into the registrar to validate the ownership of the Registered Homenet Domain and agree on the necessary credentials to secure the communication between the HNA and the DM. As described in {{!I-D.ietf-homenet-front-end-naming-delegation}}, such settings could be performed in an almost automatic way as to limit the necessary interactions with the end user.
 
 ## Multiple ISPs {#scenario-4}
 
