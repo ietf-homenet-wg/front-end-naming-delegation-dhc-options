@@ -2,7 +2,7 @@
 
 title: DHCPv6 Options for Home Network Naming Authority
 abbrev: DHCPv6 Options for HNA
-docname: draft-ietf-homenet-naming-architecture-dhc-options-22
+docname: draft-ietf-homenet-naming-architecture-dhc-options-23
 ipr: trust200902
 area: Internet
 wg: Homenet
@@ -171,14 +171,14 @@ Then the FQDN can reasonably be seen as a more stable identifier than IP address
 
 * Supported Transport (16 bits): defines the supported transport by the DM (see {{sec-st}}).
 Each bit represents a supported transport, and a DM MAY indicate the support of multiple modes.
-The left most bit for DNS over TLS {{!RFC7858}} MUST be set.
+The bit for DNS over mutually authenticated TLS (DomTLS) MUST be set.
 
 * Distribution Manager FQDN (variable): the FQDN of the DM encoded as described in Section 10 of {{!RFC8415}}.
 
-It is worth noticing that the Supported Transport field does not enable to specify a port and the used port is defined by a standard. 
-In the case of DNS over TLS {{!RFC7858}}, the port is defined by {{!RFC7858}} to be 853. 
-The need for such flexibility has been balanced with the difficulty of handling a list of tuples ( transport, port ) as well as the possibility to use a dedicated IP address for the DM. 
+It is worth noticing that the DHCP Option specifies the  Supported Transport without specifying any explicit port. Unless the HNA and the DM have agreed on using a specific port - for example by configuration, or any out of band mechanism -, the default port is used and must be specified. The specification of such default port may be defined in the specification of the designated Supported Transport or in any other document.
+In the case of DNS over mutually authenticated TLS (DomTLS), the default port value is  853 as per DNS over TLS {{!RFC7858}} and DNS Zone Transfer over TLS {{!RFC9103}}.
 
+The need to associate in the DHCP Option the port value to each Supported Transport has been balanced with the difficulty of handling a list of tuples ( transport, port ) as well as the possibility to use a dedicated IP address for the DM in case the default port was already in use. 
 
 ## Reverse Distribution Manager Server Option
 
@@ -208,13 +208,11 @@ The Reverse Distribution Manager Option (OPTION_REVERSE_DIST_MANAGER) provides t
 
 * Supported Transport (16 bits): defines the supported transport by the RDM (see {{sec-st}}).
 Each bit represents a supported transport, and a RDM MAY indicate the support of multiple modes.
-The bit for DNS over TLS {{!RFC7858}} MUST be set.
+The bit for DNS over mutually authenticated TLS {{!RFC7858}} MUST be set.
 
 * Reverse Distribution Manager FQDN (variable): the FQDN of the RDM encoded as described in section 10 of {{!RFC8415}}.
 
-It is worth noticing that the Supported Transport field does not enable to specify a port and the used port is defined by a standard. 
-In the case of DNS over TLS {{!RFC7858}}, the port is defined by {{!RFC7858}} to be 853. 
-The need for such flexibility has been balanced with the difficulty of handling a list of tuples ( transport, port ) as well as the possibility to use a dedicated IP address for the DM. 
+For the port number associated to the Supported Transport, the same considerations as described in {{o_dm}} holds.
 
 ## Supported Transport {#sec-st}
 
@@ -227,12 +225,13 @@ The corresponding bits are assigned as described in {{tab-st}} and {{sec-iana}}.
 Bit Position | Transport Protocol |  Mnemonic | Reference
 left to right| Description        |           |
 -------------+--------------------+-----------+-----------
-      0      | DNS over TLS       | DoT       | This-RFC
+      0      | DNS over mutually  | DomTLS    | This-RFC
+             | authenticated TLS  |           |  
      1-15    | unallocated        |  -        |  -
 ~~~
 {:#tab-st title="Supported Transport" }
 
-DNS over TLS: indicates the support of DNS over TLS as described in {{?RFC7858}} and {{?RFC9103}}.
+DNS over mutually authenticated  TLS (DomTLS): indicates the support of DNS over TLS {{?RFC7858}}, DNS Zone Transfer over TLS  {{?RFC9103}} as described in {{!I-D.ietf-homenet-front-end-naming-delegation}}.
 
 
 # DHCPv6 Behavior {#sec-dhcp-behavior}
@@ -289,13 +288,14 @@ Changes of the  format or policies of the registry is left to the IETF via the I
 
 Future code points are assigned under RFC Required as per {{!RFC8126}}.
 
-
 ~~~
 Bit Position | Transport Protocol |  Mnemonic | Reference
-left to right| Description        |           |  
+left to right| Description        |           |
 -------------+--------------------+-----------+-----------
-      0      | DNS over TLS       | DoT       | This-RFC
+      0      | DNS over mutually  | DomTLS    | This-RFC
+             | authenticated TLS  |           |  
      1-15    | unallocated        |  -        |  -
+
 ~~~
 {:#tab-iana title="Supported Transport" }
 
@@ -303,6 +303,11 @@ left to right| Description        |           |
 
 The security considerations in {{!RFC8415}} are to be considered.
 The trust associated with the information carried by the DHCPv6 Options described in this document is similar to the one associated with the IP prefix - when configured via DHCPv6.
+
+In some cases, the ISP MAY identify the HNA by its wire line, that is to say physically which may not require to rely on TLS to authenticate the HNA. 
+As TLS is mandatory to be used, it is expected the HNA is provisioned with a certificate. 
+In some cases, the HNA may use a self signed certificate.
+
 
 # Acknowledgments
 
